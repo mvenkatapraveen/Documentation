@@ -4,10 +4,10 @@
 
 ```sh
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col
+from pyspark.sql.functions import *
 
 # Initialize Spark session
-spark = SparkSession.builder.appName('InClauseExample').getOrCreate()
+spark = SparkSession.builder.appName('Test').getOrCreate()
 
 # Input Data for creating Data Frames
 data = [
