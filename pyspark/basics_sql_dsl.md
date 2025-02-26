@@ -1,6 +1,6 @@
 # PySpark Basics Using SQL & DSL
 
-### 1. Create Data Frames and SQL Table (Prerequisites)
+## 1. Create Data Frames and SQL Table (Prerequisites)
 
 ```sh
 from pyspark.sql import SparkSession
@@ -98,8 +98,8 @@ prod.show()
 |  3| mobile|
 |  7| laptop|
 
-### 2. Basic Queries
-#### 2.1. Select all columns
+## 2. Basic Queries
+### 2.1. Select all columns
 **Using SQL:**
 ```sh
 spark.sql("select * from df").show()
@@ -123,7 +123,7 @@ df.select("*").show()
 |  7|12-17-2011| 300.0|  Team Sports|         Field|   cash|
 |  8|02-14-2011| 200.0|   Gymnastics|          NULL|   cash|
 
-#### 2.2. Select specific columns
+### 2.2. Select specific columns
 **Using SQL:**
 ```sh
 spark.sql("select id, tdate from df").show()
@@ -147,7 +147,7 @@ df.select("id","tdate").show()
 |  7|12-17-2011|
 |  8|02-14-2011|
 
-#### 2.3. Single Column Filter
+### 2.3. Single Column Filter
 **Using SQL:**
 ```sh
 spark.sql("select * from df where spendby='cash'").show()
@@ -168,7 +168,7 @@ df.filter("spendby='cash'").show()
 |  7|12-17-2011| 300.0|Team Sports|         Field|   cash|
 |  8|02-14-2011| 200.0| Gymnastics|          NULL|   cash|
 
-#### 2.4. Multi Column Filter
+### 2.4. Multi Column Filter
 **Using SQL:**
 ```sh
 spark.sql("select * from df where category='Exercise' and spendby='cash'").show()
@@ -185,7 +185,7 @@ df.filter("category='Exercise' and spendby='cash'").show()
 |  0|06-26-2011| 300.4|Exercise| GymnasticsPro|   cash|
 |  2|06-01-2011| 300.4|Exercise|Gymnastics Pro|   cash|
 
-#### 2.5. Multi Value Filter (IN Clause)
+### 2.5. Multi Value Filter (IN Clause)
 **Using SQL:**
 ```sh
 spark.sql("select * from df where category in ('Exercise','Gymnastics')").show()
@@ -209,7 +209,7 @@ df.filter(col("category").isin("Exercise","Gymnastics")).show()
 |  6|06-05-2011| 100.0|  Exercise|         Rings| credit|
 |  8|02-14-2011| 200.0|Gymnastics|          NULL|   cash|
 
-#### 2.6. Not IN Clause
+### 2.6. Not IN Clause
 **Using SQL:**
 ```sh
 spark.sql("select * from df where category not in ('Exercise','Gymnastics')").show()
@@ -230,7 +230,7 @@ df.filter(~col("category").isin("Exercise","Gymnastics")).show()
 |  4|12-17-2011| 300.0|  Team Sports|        Field|   cash|
 |  7|12-17-2011| 300.0|  Team Sports|        Field|   cash|
 
-#### 2.7. Like filter
+### 2.7. Like filter
 **Using SQL:**
 ```sh
 spark.sql("select * from df where product like 'Gymnastics%'").show()
@@ -250,7 +250,7 @@ df.filter(col("product").like("Gymnastics%")).show()
 |  0|06-26-2011| 300.4|Exercise| GymnasticsPro|   cash|
 |  2|06-01-2011| 300.4|Exercise|Gymnastics Pro|   cash|
 
-#### 2.8. Not Like filter
+### 2.8. Not Like filter
 **Using SQL:**
 ```sh
 spark.sql("select * from df where product not like 'Gymnastics%'").show()
@@ -273,7 +273,7 @@ df.filter(~col("product").like("Gymnastics%")).show()
 |  6|06-05-2011| 100.0|     Exercise|        Rings| credit|
 |  7|12-17-2011| 300.0|  Team Sports|        Field|   cash|
 
-#### 2.9. Null filter
+### 2.9. Null filter
 **Using SQL:**
 ```sh
 spark.sql("select * from df where product is null").show()
@@ -293,7 +293,7 @@ df.filter(col("product").isNull()).show()
 |  5|02-14-2011| 200.0|Gymnastics|   NULL|   cash|
 |  8|02-14-2011| 200.0|Gymnastics|   NULL|   cash|
 
-#### 2.10. Not Null filter
+### 2.10. Not Null filter
 **Using SQL:**
 ```sh
 spark.sql("select * from df where product is not null").show()
@@ -318,7 +318,7 @@ df.filter(col("product").isNotNull()).show()
 |  6|06-05-2011| 100.0|     Exercise|         Rings| credit|
 |  7|12-17-2011| 300.0|  Team Sports|         Field|   cash|
 
-#### 2.11. Max Function
+### 2.11. Max Function
 **Using SQL:**
 ```sh
 spark.sql("select max(amount) as max_amount from df").show()
@@ -334,7 +334,7 @@ df.agg(max("amount").alias("max_amount")).show()
 | ------ |
 |     300.4|
 
-#### 2.12. Min Function
+### 2.12. Min Function
 **Using SQL:**
 ```sh
 spark.sql("select min(amount) as min_amount from df").show()
@@ -351,7 +351,7 @@ df.agg(min("amount").alias("min_amount")).show()
 | ------ |
 |     100.0|
 
-#### 2.13. Count Function
+### 2.13. Count Function
 **Using SQL:**
 ```sh
 spark.sql("select count(1) as count from df").show()
@@ -370,7 +370,7 @@ df.agg(count("*").alias("count")).show()
 | ------ |
 |    9|
 
-#### 2.14. Conditional Statement
+### 2.14. Conditional Statement
 **Using SQL:**
 ```sh
 spark.sql("select *, case when spendby='cash' then 0 else 1 end as status from df").show()
@@ -393,7 +393,7 @@ df.selectExpr("*","case when spendby='cash' then 0 else 1 end as status").show()
 |  7|12-17-2011| 300.0|  Team Sports|         Field|   cash|     0|
 |  8|02-14-2011| 200.0|   Gymnastics|          NULL|   cash|     0|
 
-#### 2.15. Concat Function
+### 2.15. Concat Function
 **Using SQL:**
 ```sh
 spark.sql("select category,product,concat(category,'~',product) as concat_data from df").show()
@@ -416,7 +416,7 @@ df.selectExpr("category", "product", "concat(category,'~',product) as concat_dat
 |  Team Sports|         Field|   Team Sports~Field|
 |   Gymnastics|          NULL|                NULL|
 
-#### 2.16. Concat multiple columns with same delimiter
+### 2.16. Concat multiple columns with same delimiter
 **Using SQL:**
 ```sh
 spark.sql("select category,product,spendby,concat_ws('~', category,product,spendby) as concat_data from df").show()
@@ -439,7 +439,7 @@ df.selectExpr("category", "product", "spendby", "concat_ws('~', category, produc
 |  Team Sports|         Field|   cash|Team Sports~Field...|
 |   Gymnastics|          NULL|   cash|     Gymnastics~cash|
 
-#### 2.17. Lower case function
+### 2.17. Lower case function
 **Using SQL:**
 ```sh
 spark.sql("select category,lower(category)  as lowercase_data from df").show()
@@ -462,7 +462,7 @@ df.selectExpr("category", "lower(category) as lowercase_data").show()
 |  Team Sports|   team sports|
 |   Gymnastics|    gymnastics|
 
-#### 2.18. Upper case function
+### 2.18. Upper case function
 **Using SQL:**
 ```sh
 spark.sql("select category, upper(category)  as uppercase_data from df").show()
@@ -485,7 +485,7 @@ df.selectExpr("category", "upper(category) as uppercase_data").show()
 |  Team Sports|   TEAM SPORTS|
 |   Gymnastics|    GYMNASTICS|
 
-#### 2.19. Ceil function
+### 2.19. Ceil function
 **Using SQL:**
 ```sh
 spark.sql("select amount,ceil(amount) as ceil_data from df").show()
@@ -508,7 +508,7 @@ df.selectExpr("amount", "ceil(amount) as ceil_data").show()
 | 300.0|      300|
 | 200.0|      200|
 
-#### 2.20. Round function
+### 2.20. Round function
 **Using SQL:**
 ```sh
 spark.sql("select amount, round(amount) as round_data from df").show()
@@ -531,7 +531,7 @@ df.selectExpr("amount", "round(amount) as round_data").show()
 | 300.0|     300.0|
 | 200.0|     200.0|
 
-#### 2.21. Coalesce function
+### 2.21. Coalesce function
 **Using SQL:**
 ```sh
 spark.sql("select product,coalesce(product, 'NA') as modified_data from df").show()
@@ -554,7 +554,7 @@ df.selectExpr("product", "coalesce(product, 'NA') as modified_data").show()
 |         Field|         Field|
 |          NULL|            NA|
 
-#### 2.22. Distinct function
+### 2.22. Distinct function
 **Using SQL:**
 ```sh
 spark.sql("select distinct category from df").show()
@@ -572,7 +572,7 @@ df.select("category").distinct().show()
 |     Exercise|
 |Exercise Band|
 
-#### 2.23. Distinct function on multiple columns
+### 2.23. Distinct function on multiple columns
 **Using SQL:**
 ```sh
 spark.sql("select distinct category, spendby from df").show()
@@ -592,7 +592,7 @@ df.select("category", "spendby").distinct().show()
 |Exercise Band| credit|
 |   Gymnastics| credit|
 
-#### 2.24. Substring function
+### 2.24. Substring function
 **Using SQL:**
 ```sh
 spark.sql("select substring(tdate, 7,4) as year from df").show()
@@ -615,7 +615,7 @@ df.selectExpr("substring(tdate, 7,4) as year").show()
 |2011|
 |2011|
 
-#### 2.25. Split function
+### 2.25. Split function
 **Using SQL:**
 ```sh
 spark.sql("select split(tdate, '-')[2] as year from df").show()
@@ -638,7 +638,7 @@ df.selectExpr("split(tdate, '-')[2] as year").show()
 |2011|
 |2011|
 
-#### 2.26. Union All
+### 2.26. Union All
 **Using SQL:**
 ```sh
 spark.sql("select * from df union all select * from df1").show()
@@ -670,7 +670,7 @@ df.select("*").union(df1.select("*")).show()
 |  6|02-14-2011| 200.0|       Winter|          NULL|   cash|
 |  7|02-14-2011| 200.0|       Winter|          NULL|   cash|
 
-#### 2.27. Union
+### 2.27. Union
 **Using SQL:**
 ```sh
 spark.sql("select * from df union select * from df1").show()
@@ -697,7 +697,7 @@ df.select("*").union(df1.select("*")).distinct().show()
 |  6|02-14-2011| 200.0|       Winter|          NULL|   cash|
 |  7|02-14-2011| 200.0|       Winter|          NULL|   cash|
 
-#### 2.28. Sum Aggregation
+### 2.28. Sum Aggregation
 **Using SQL:**
 ```sh
 spark.sql("select sum(amount) as sum from df").show()
@@ -712,7 +712,7 @@ df.agg(sum("amount").alias("sum")).show()
 | ------ |
 |2000.8|
 
-#### 2.29. Group by & Aggregation
+### 2.29. Group by & Aggregation
 **Using SQL:**
 ```sh
 spark.sql("select category, sum(amount) as sum from df group by category").show()
@@ -730,7 +730,7 @@ df.groupby("category").agg(sum("amount").alias("sum")).show()
 |     Exercise|700.8|
 |Exercise Band|200.0|
 
-#### 2.30. Group by multi column & Aggregation
+### 2.30. Group by multi column & Aggregation
 **Using SQL:**
 ```sh
 spark.sql("select category,spendby, sum(amount) as sum from df group by category,spendby").show()
@@ -750,7 +750,7 @@ df.groupby("category","spendby").agg(sum("amount").alias("sum")).show()
 |Exercise Band| credit|200.0|
 |   Gymnastics| credit|100.0|
 
-#### 2.31. Multiple Aggregation Functions
+### 2.31. Multiple Aggregation Functions
 **Using SQL:**
 ```sh
 spark.sql("select category, sum(amount) as sum, count(1) as count from df group by category").show()
@@ -768,7 +768,7 @@ df.groupby("category").agg(sum("amount").alias("sum"),count("*").alias("count"))
 |     Exercise|700.8|    3|
 |Exercise Band|200.0|    1|
 
-#### 2.32. Max Aggregation
+### 2.32. Max Aggregation
 **Using SQL:**
 ```sh
 spark.sql("select category, max(amount) as max_amount from df group by category").show()
@@ -786,7 +786,7 @@ df.groupby("category").agg(max("amount").alias("max_amount")).show()
 |     Exercise|     300.4|
 |Exercise Band|     200.0|
 
-#### 2.33. Aggregation & Order by
+### 2.33. Aggregation & Order by
 **Using SQL:**
 default: asc
 ```sh
@@ -827,7 +827,7 @@ df.groupby("category", "product").agg(sum("amount").alias("sum")).orderBy(desc("
 |     Exercise| GymnasticsPro|300.4|
 |     Exercise|Gymnastics Pro|300.4|
 
-#### 2.34. Group by & Aggregation
+### 2.34. Group by & Aggregation
 **Using SQL:**
 ```sh
 spark.sql("select category, sum(amount) as sum from df group by category").show()
@@ -845,7 +845,7 @@ df.groupby("category").agg(sum("amount").alias("sum")).show()
 |     Exercise|700.8|
 |Exercise Band|200.0|
 
-#### 2.35. Window Functions: Row Number
+### 2.35. Window Functions: Row Number
 **Using SQL:**
 ```sh
 spark.sql("select category, amount, row_number() over (partition by category order by amount desc) as rownum from df").show()
@@ -868,7 +868,7 @@ spark.sql("select category, amount, row_number() over (partition by category ord
 |  Team Sports| 300.0|     1|
 |  Team Sports| 300.0|     2|
 
-#### 2.36. Window Functions: Dense Rank
+### 2.36. Window Functions: Dense Rank
 **Using SQL:**
 ```sh
 spark.sql("select category, amount,dense_rank() over (partition by category order by amount desc) as dense_rank from df").show()
@@ -891,7 +891,7 @@ spark.sql("select category, amount,dense_rank() over (partition by category orde
 |  Team Sports| 300.0|         1|
 |  Team Sports| 300.0|         1|
 
-#### 2.37. Window Functions: Rank
+### 2.37. Window Functions: Rank
 **Using SQL:**
 ```sh
 spark.sql("select category, amount,rank() over (partition by category order by amount desc) as dense_rank from df").show()
@@ -914,7 +914,7 @@ spark.sql("select category, amount,rank() over (partition by category order by a
 |  Team Sports| 300.0|   1|
 |  Team Sports| 300.0|   1|
 
-#### 2.38. Window Functions: Lead
+### 2.38. Window Functions: Lead
 **Using SQL:**
 ```sh
 spark.sql("select category, lead(amount) over (partition by category order by amount desc) as lead from df").show()
@@ -937,7 +937,7 @@ spark.sql("select category, lead(amount) over (partition by category order by am
 |  Team Sports|300.0|
 |  Team Sports| NULL|
 
-#### 2.39. Window Functions: Lag
+### 2.39. Window Functions: Lag
 **Using SQL:**
 ```sh
 spark.sql("select category, lag(amount) over (partition by category order by amount desc) as lag from df").show()
@@ -960,7 +960,7 @@ spark.sql("select category, lag(amount) over (partition by category order by amo
 |  Team Sports| NULL|
 |  Team Sports|300.0|
 
-#### 2.40. Having Clause
+### 2.40. Having Clause
 **Using SQL:**
 ```sh
 spark.sql("select category, sum(amount) as amt from df group by category having amt > 300").show()
@@ -980,7 +980,7 @@ df.groupby("category").agg(sum("amount").alias("amt")).filter(col("amt")>300).sh
 |Team Sports|600.0|
 |   Exercise|700.8|
 
-#### 2.41. Inner Join
+### 2.41. Inner Join
 **Using SQL:**
 ```sh
 spark.sql("select cust.*,prod.product from cust join prod on cust.id=prod.id").show()
@@ -996,7 +996,7 @@ cust.select("*").join(prod.select("id","product"), on="id", how="inner").show()
 |  1| raj|  mouse|
 |  3| sai| mobile|
 
-#### 2.42. Left Join
+### 2.42. Left Join
 **Using SQL:**
 ```sh
 spark.sql("select cust.*,prod.product from cust left join prod on cust.id=prod.id").show()
@@ -1014,7 +1014,7 @@ cust.select("*").join(prod.select("id","product"), on="id", how="left").show()
 |  3| sai| mobile|
 |  2|ravi|   NULL|
 
-#### 2.43. Right Join
+### 2.43. Right Join
 **Using SQL:**
 ```sh
 spark.sql("select prod.*,cust.name from cust left join prod on cust.id=prod.id").show()
@@ -1030,7 +1030,7 @@ cust.select("id","name").join(prod.select("*"), on="id", how="inner").show()
 |  1| raj|  mouse|
 |  3| sai| mobile|
 
-#### 2.44. Full Join
+### 2.44. Full Join
 
 **Using SQL:**
 
@@ -1055,7 +1055,7 @@ cust.select("*").join(prod.select("id","product"), on="id", how="full").show()
 |  5|rani|   NULL|
 |  7|NULL| laptop|
 
-#### 2.45. Anti Join
+### 2.45. Anti Join
 **Using SQL:**
 ```sh
 spark.sql("select cust.* from cust anti join prod on cust.id=prod.id").show()
@@ -1070,3 +1070,119 @@ cust.select("*").join(prod, on="id", how="anti").show()
 | ------ | ------ |
 |  5|rani|
 |  2|ravi|
+
+### 2.46. Date Format
+Convert to date
+**Using SQL:**
+```sh
+spark.sql("select tdate, to_date(tdate,'MM-dd-yyyy') as modified_date from df").show()
+```
+**Using DSL:**
+```sh
+df.selectExpr("tdate", "to_date(tdate, 'MM-dd-yyyy') as modified_date").show()
+```
+
+**Output Using SQL/DSL:**
+|     tdate|modified_date|
+| ------ | ------ |
+|06-26-2011|   2011-06-26|
+|05-26-2011|   2011-05-26|
+|06-01-2011|   2011-06-01|
+|06-05-2011|   2011-06-05|
+|12-17-2011|   2011-12-17|
+|02-14-2011|   2011-02-14|
+|06-05-2011|   2011-06-05|
+|12-17-2011|   2011-12-17|
+|02-14-2011|   2011-02-14|
+
+Extract year
+**Using SQL:**
+```sh
+spark.sql("select tdate, year(to_date(tdate,'MM-dd-yyyy')) as year from df").show()
+```
+**Using DSL:**
+```sh
+df.selectExpr("tdate", "year(to_date(tdate, 'MM-dd-yyyy')) as year").show()
+```
+
+**Output Using SQL/DSL:**
+|     tdate|year|
+| ------ | ------ |
+|06-26-2011|2011|
+|05-26-2011|2011|
+|06-01-2011|2011|
+|06-05-2011|2011|
+|12-17-2011|2011|
+|02-14-2011|2011|
+|06-05-2011|2011|
+|12-17-2011|2011|
+|02-14-2011|2011|
+
+Extract month
+**Using SQL:**
+```sh
+spark.sql("select tdate, month(to_date(tdate,'MM-dd-yyyy')) as month from df").show()
+```
+**Using DSL:**
+```sh
+df.selectExpr("tdate", "month(to_date(tdate, 'MM-dd-yyyy')) as month").show()
+```
+
+**Output Using SQL/DSL:**
+|     tdate|month|
+| ------ | ------ |
+|06-26-2011|    6|
+|05-26-2011|    5|
+|06-01-2011|    6|
+|06-05-2011|    6|
+|12-17-2011|   12|
+|02-14-2011|    2|
+|06-05-2011|    6|
+|12-17-2011|   12|
+|02-14-2011|    2|
+
+Extract day
+**Using SQL:**
+```sh
+spark.sql("select tdate, day(to_date(tdate,'MM-dd-yyyy')) as day from df").show()
+```
+**Using DSL:**
+```sh
+df.selectExpr("tdate", "day(to_date(tdate, 'MM-dd-yyyy'))as day").show()
+```
+
+**Output Using SQL/DSL:**
+|     tdate|day|
+| ------ | ------ |
+|06-26-2011| 26|
+|05-26-2011| 26|
+|06-01-2011|  1|
+|06-05-2011|  5|
+|12-17-2011| 17|
+|02-14-2011| 14|
+|06-05-2011|  5|
+|12-17-2011| 17|
+|02-14-2011| 14|
+
+Extract year using data_format()
+**Using SQL:**
+```sh
+spark.sql("select tdate, date_format(to_date(tdate,'MM-dd-yyyy'), 'yyyy') as modified_date from df").show()
+```
+**Using DSL:**
+```sh
+df.selectExpr("tdate", "date_format(to_date(tdate, 'MM-dd-yyyy'), 'yyyy') as year").show()
+```
+
+**Output Using SQL/DSL:**
+|     tdate|year|
+| ------ | ------ |
+|06-26-2011|2011|
+|05-26-2011|2011|
+|06-01-2011|2011|
+|06-05-2011|2011|
+|12-17-2011|2011|
+|02-14-2011|2011|
+|06-05-2011|2011|
+|12-17-2011|2011|
+|02-14-2011|2011|
