@@ -1,7 +1,7 @@
 # PySpark Basics Using SQL & DSL
 
-## 1. Create Data Frames and SQL Table (Prerequisites)
-
+## 1. Create Data Frames and SQL Views (Prerequisites)
+Use the following code as a prerequisite for creating data frames and register as SQL temporary views.
 ```sh
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
@@ -62,6 +62,8 @@ prod.show()
 
 ```
 ### _Output Data Frame Views_
+When the prerequisite code is executed, following data frames are displayed.
+
 **DF View:**
 | id|     tdate|amount|     category|       product|spendby|
 | ------ | ------ | ------ | ------| ------ | ------|
@@ -99,6 +101,8 @@ prod.show()
 |  7| laptop|
 
 ## 2. Basic Queries
+Data can be processed using Spark SQL or DSL.
+Following are few sample ways to process data using SQL or DSL.
 ### 2.1. Select all columns
 **Using SQL:**
 ```sh
@@ -980,6 +984,8 @@ df.groupby("category").agg(sum("amount").alias("amt")).filter(col("amt")>300).sh
 |Team Sports|600.0|
 |   Exercise|700.8|
 
+## Joins
+![Joins Example Image](./assets/images/joins.png)
 ### 2.41. Inner Join
 **Using SQL:**
 ```sh
@@ -1186,3 +1192,15 @@ df.selectExpr("tdate", "date_format(to_date(tdate, 'MM-dd-yyyy'), 'yyyy') as yea
 |06-05-2011|2011|
 |12-17-2011|2011|
 |02-14-2011|2011|
+
+### 2.47. Sub Queries
+**Using SQL:**
+```sh
+
+```
+**Using DSL:**
+```sh
+
+```
+
+**Output Using SQL/DSL:**
