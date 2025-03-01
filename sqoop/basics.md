@@ -27,7 +27,7 @@ Following basic details are required
 - Table
 - Target
 
-_Sqoop Import Template:_
+**_Sqoop Import Template:_**
 
 ```sh
 sqoop import --connect jdbc:mysql://<Hostname>:<PortNumber>/<Database> --username <Username> --password <Password> --table <TableName> --target-dir <TargetDirectory>
@@ -220,7 +220,7 @@ Note: Recompile with -Xlint:deprecation for details.
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImport.png)
 <br>
 
-To import specific data(records) from a table to HDFS, execute the following Command
+To import specific records from a table to HDFS, execute the following Command
 
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --delete-target-dir --target-dir /user/cloudera/mvp/tableportionimp --where "name='praveen'"
@@ -311,7 +311,7 @@ Note: Recompile with -Xlint:deprecation for details.
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImportWithReqCols.png)
 <br>
 
-To import specific columns of specific data(records) from a table to HDFS, execute the following Command
+To import specific columns of specific records from a table to HDFS, execute the following Command
 
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --delete-target-dir --target-dir /user/cloudera/mvp/tableportionimpreqcols --where "name='praveen'" --columns "name"
@@ -402,6 +402,8 @@ Note: Recompile with -Xlint:deprecation for details.
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport.png)
 <br>
 
+**_Full Import:_**
+
 To import entire data from a table to HDFS, execute the following Command
 
 ```sh
@@ -488,11 +490,14 @@ Note: Recompile with -Xlint:deprecation for details.
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport_Full_Output.png)
 <br>
 
-To perform incremental loads(for new records) from a table to HDFS, execute the following Command
+**_Run Incrmental:_**
+
+To perform incremental loads(for newly inserted records) from a table to HDFS, execute the following Command
 
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --target-dir /user/cloudera/mvp/tableincimp --incremental append --check-column id --last-value 3
 ```
+
 > last value -> previous imported last record value.
 
 **_Console:_**
@@ -586,6 +591,7 @@ Note: Recompile with -Xlint:deprecation for details.
 <br>
 
 > A new part file gets created for each incremental run.
+
 > Last value has to be noted down, in case incremental run is executed manually.
 
 ### 1.6. Sqoop Full import using Query clause
@@ -769,7 +775,7 @@ Note: Recompile with -Xlint:deprecation for details.
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImport.png)
 <br>
 
-To import specific data(records) from a table to HDFS, execute the following Command
+To import specific records from a table to HDFS, execute the following Command
 
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryportionimp --query "select * from emp where name='praveen' and \$CONDITIONS"
@@ -857,7 +863,7 @@ Note: Recompile with -Xlint:deprecation for details.
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImportWithReqCols.png)
 <br>
 
-To import specific columns of specific data(records) from a table to HDFS, execute the following Command
+To import specific columns of specific records from a table to HDFS, execute the following Command
 
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryportionimpreqcols --query "select name from emp where name='praveen' and \$CONDITIONS"
@@ -945,6 +951,8 @@ Note: Recompile with -Xlint:deprecation for details.
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport.png)
 <br>
 
+**_Full Import:_**
+
 To import entire data from a table to HDFS, execute the following Command
 
 ```sh
@@ -1028,7 +1036,9 @@ Note: Recompile with -Xlint:deprecation for details.
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport_Full_Query_Output.png)
 <br>
 
-To perform incremental loads(for new records) from a table to HDFS, execute the following Command
+**_Run Incremental:_**
+
+To perform incremental loads for newly iserted records from a table to HDFS, execute the following Command
 
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --target-dir /user/cloudera/mvp/queryincimp --query "select * from emp where \$CONDITIONS" --incremental append --check-column id --last-value 3
@@ -1132,7 +1142,7 @@ Note: Recompile with -Xlint:deprecation for details.
 ![Sqoop Import Export Example](./assets/images/SqoopFullImport_Query_Joins.png)
 <br>
 
-To import entire table data to HDFS, execute the following Command
+To import entire join records data to HDFS, execute the following Command
 
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryfullimpusingjoins --query "select e.*,s.amount from emp e join sal s on e.id= s.id where \$CONDITIONS"
@@ -1220,7 +1230,7 @@ Note: Recompile with -Xlint:deprecation for details.
 ![Sqoop Import Export Example](./assets/images/SqoopFullImportWithReqCols_Query_Joins.png)
 <br>
 
-To import entire table data to HDFS, execute the following Command
+To import specific columns of join records to HDFS, execute the following Command
 
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryfullimpusingjoinsreqcols --query "select e.name,s.amount from emp e join sal s on e.id= s.id where \$CONDITIONS"
@@ -1308,7 +1318,7 @@ Note: Recompile with -Xlint:deprecation for details.
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImport_Query_Joins.png)
 <br>
 
-To import entire table data to HDFS, execute the following Command
+To import specific join records to HDFS, execute the following Command
 
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryportionimpusingjoins --query "select e.*,s.amount from emp e join sal s on e.id= s.id where s.amount>10000 and \$CONDITIONS"
@@ -1396,7 +1406,7 @@ Note: Recompile with -Xlint:deprecation for details.
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImportWithReqCols_Query_Joins.png)
 <br>
 
-To import entire table data to HDFS, execute the following Command
+To import specific columns of specific records to HDFS, execute the following Command
 
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryportionimpusingjoinsreqcols --query "select e.name,s.amount from emp e join sal s on e.id= s.id where s.amount>10000 and \$CONDITIONS"
@@ -1485,7 +1495,9 @@ Note: Recompile with -Xlint:deprecation for details.
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport_Query_Joins.png)
 <br>
 
-To import entire data from a table to HDFS, execute the following Command
+**_Full Import:_**
+
+To import entire join records to HDFS, execute the following Command
 
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryincimpusingjoins --query "select e.*,s.amount from emp e join sal s on e.id= s.id where \$CONDITIONS"
@@ -1568,7 +1580,9 @@ Note: Recompile with -Xlint:deprecation for details.
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport_Full_Query_Joins_Output.png)
 <br>
 
-To perform incremental loads(for new records) from a table to HDFS, execute the following Command
+**_Run Incremental:_**
+
+To perform incremental loads for new inserted records by joins from a table to HDFS, execute the following Command
 
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --target-dir /user/cloudera/mvp/queryincimpusingjoins --query "select e.*,s.amount from emp e join sal s using (id) where \$CONDITIONS" --incremental append --check-column id --last-value 3
