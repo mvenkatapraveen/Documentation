@@ -1,4 +1,4 @@
-# Data Frames processing using SQL & DSL 
+# Data Frames processing using SQL & DSL
 
 ## 1. Create Data Frames and SQL Views (Prerequisites)
 Use the following code as a prerequisite for creating data frames and register data frames as SQL temporary views.
@@ -986,6 +986,7 @@ df.groupby("category").agg(sum("amount").alias("amt")).filter(col("amt")>300).sh
 
 ## Joins
 ![Joins Example Image](./assets/images/joins.png)
+<br>
 ### 2.41. Inner Join
 **Using SQL:**
 ```sh

@@ -8,6 +8,7 @@ Using Sqoop
 - Serialized Imports are possible
 - Exports are possible
 ![Sqoop Import Export Example](./assets/images/ImportExport.png)
+<br>
 > Import --> Data from RDBMS to HDFS
 > Export --> Data from HDFS to RDBMS
 
@@ -30,7 +31,7 @@ sqoop import --connect jdbc:mysql://<Hostname>:<PortNumber>/<Database> --usernam
 ### 1.1 Sqoop full import from a single table
 
 ![Sqoop Import Export Example](./assets/images/SqoopFullImport.png)
-
+<br>
 To import entire table data to HDFS, execute the following Command
 
 ```sh
@@ -114,9 +115,11 @@ Note: Recompile with -Xlint:deprecation for details.
 Imported File on HDFS:
 
 ![Sqoop Import Export Example](./assets/images/SqoopFullImport_Output.png)
+<br>
 
 ### 1.2 Sqoop Full Import from single table with specific columns
 ![Sqoop Import Export Example](./assets/images/SqoopFullImportWithReqCols.png)
+<br>
 To import specific columns data from a table to HDFS, execute the following Command
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --delete-target-dir --target-dir /user/cloudera/mvp/tablefullimpreqcols --columns "name"
@@ -197,9 +200,11 @@ Note: Recompile with -Xlint:deprecation for details.
 Imported File on HDFS:
 
 ![Sqoop Import Export Example](./assets/images/SqoopFullImportWithReqCols_Output.png)
+<br>
 
 ### 1.3. Sqoop Portion Imports from a single table
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImport.png)
+<br>
 To import specific data(records) from a table to HDFS, execute the following Command
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --delete-target-dir --target-dir /user/cloudera/mvp/tableportionimp --where "name='praveen'"
@@ -280,9 +285,11 @@ Note: Recompile with -Xlint:deprecation for details.
 Imported File on HDFS:
 
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImport_Output.png)
+<br>
 
 ### 1.4. Sqoop Portion Imports from a single table with specific columns
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImportWithReqCols.png)
+<br>
 To import specific columns of specific data(records) from a table to HDFS, execute the following Command
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --delete-target-dir --target-dir /user/cloudera/mvp/tableportionimpreqcols --where "name='praveen'" --columns "name"
@@ -363,10 +370,10 @@ Note: Recompile with -Xlint:deprecation for details.
 Imported File on HDFS:
 
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImportWithReqCols_Output.png)
-
+<br>
 ### 1.5. Sqoop Incremental import from a single table
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport.png)
-
+<br>
 To import entire data from a table to HDFS, execute the following Command
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --delete-target-dir --target-dir /user/cloudera/mvp/tableincimp
@@ -447,7 +454,7 @@ Note: Recompile with -Xlint:deprecation for details.
 Imported File on HDFS:
 
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport_Full_Output.png)
-
+<br>
 To perform incremental loads(for new records) from a table to HDFS, execute the following Command
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --target-dir /user/cloudera/mvp/tableincimp --incremental append --check-column id --last-value 3
@@ -540,5 +547,6 @@ Note: Recompile with -Xlint:deprecation for details.
 Imported File on HDFS:
 
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport_Inc_Output.png)
+<br>
 > A new part file gets created for each incremental run
 > Last value has to be noted down, in case incremental run is executed manually
