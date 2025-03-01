@@ -1,7 +1,7 @@
-# PySpark Basics Using SQL & DSL
+# Data Frames SQL & DSL Basics
 
 ## 1. Create Data Frames and SQL Views (Prerequisites)
-Use the following code as a prerequisite for creating data frames and register as SQL temporary views.
+Use the following code as a prerequisite for creating data frames and register data frames as SQL temporary views.
 ```sh
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
@@ -62,7 +62,7 @@ prod.show()
 
 ```
 ### _Output Data Frame Views_
-When the prerequisite code is executed, following data frames are displayed.
+When the prerequisite code is executed, following data frames are created and displayed.
 
 **DF View:**
 | id|     tdate|amount|     category|       product|spendby|
