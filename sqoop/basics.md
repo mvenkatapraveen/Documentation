@@ -7,13 +7,16 @@ Using Sqoop
 - Modified Imports are possible
 - Serialized Imports are possible
 - Exports are possible
+
 ![Sqoop Import Export Example](./assets/images/ImportExport.png)
 <br>
+
 > Import --> Data from RDBMS to HDFS
 > Export --> Data from HDFS to RDBMS
 
 
 ## 1. Sqoop Import Command
+
 Following basic details are required
 - Hostname
 - PortNumber
@@ -23,7 +26,7 @@ Following basic details are required
 - Table
 - Target
 
-Sqoop Import Template:
+_Sqoop Import Template:_
 
 ```sh
 sqoop import --connect jdbc:mysql://<Hostname>:<PortNumber>/<Database> --username <Username> --password <Password> --table <TableName> --target-dir <TargetDirectory>
@@ -33,13 +36,15 @@ sqoop import --connect jdbc:mysql://<Hostname>:<PortNumber>/<Database> --usernam
 
 ![Sqoop Import Export Example](./assets/images/SqoopFullImport.png)
 <br>
+
 To import entire table data to HDFS, execute the following Command
 
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --delete-target-dir --target-dir /user/cloudera/mvp/tablefullimp
 ```
 
-Console:
+_Console:_
+
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
 Please set $ACCUMULO_HOME to the root of your Accumulo installation.
@@ -113,19 +118,24 @@ Note: Recompile with -Xlint:deprecation for details.
 25/02/28 19:38:01 INFO mapreduce.ImportJobBase: Retrieved 3 records.
 ```
 
-Imported File on HDFS:
+_Imported File on HDFS:_
 
 ![Sqoop Import Export Example](./assets/images/SqoopFullImport_Output.png)
 <br>
 
 ### 1.2 Sqoop Full Import from single table with specific columns
+
 ![Sqoop Import Export Example](./assets/images/SqoopFullImportWithReqCols.png)
 <br>
+
 To import specific columns data from a table to HDFS, execute the following Command
+
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --delete-target-dir --target-dir /user/cloudera/mvp/tablefullimpreqcols --columns "name"
 ```
-Console:
+
+_Console:_
+
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
 Please set $ACCUMULO_HOME to the root of your Accumulo installation.
@@ -198,19 +208,25 @@ Note: Recompile with -Xlint:deprecation for details.
 25/02/28 19:57:34 INFO mapreduce.ImportJobBase: Transferred 21 bytes in 78.2253 seconds (0.2685 bytes/sec)
 25/02/28 19:57:34 INFO mapreduce.ImportJobBase: Retrieved 3 records.
 ```
-Imported File on HDFS:
+
+_Imported File on HDFS:_
 
 ![Sqoop Import Export Example](./assets/images/SqoopFullImportWithReqCols_Output.png)
 <br>
 
 ### 1.3. Sqoop Portion Imports from a single table
+
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImport.png)
 <br>
+
 To import specific data(records) from a table to HDFS, execute the following Command
+
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --delete-target-dir --target-dir /user/cloudera/mvp/tableportionimp --where "name='praveen'"
 ```
-Console:
+
+_Console:_
+
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
 Please set $ACCUMULO_HOME to the root of your Accumulo installation.
@@ -283,19 +299,25 @@ Note: Recompile with -Xlint:deprecation for details.
 25/02/28 20:28:55 INFO mapreduce.ImportJobBase: Transferred 10 bytes in 75.7572 seconds (0.132 bytes/sec)
 25/02/28 20:28:55 INFO mapreduce.ImportJobBase: Retrieved 1 records.
 ```
-Imported File on HDFS:
+
+_Imported File on HDFS:_
 
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImport_Output.png)
 <br>
 
 ### 1.4. Sqoop Portion Imports from a single table with specific columns
+
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImportWithReqCols.png)
 <br>
+
 To import specific columns of specific data(records) from a table to HDFS, execute the following Command
+
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --delete-target-dir --target-dir /user/cloudera/mvp/tableportionimpreqcols --where "name='praveen'" --columns "name"
 ```
-Console:
+
+_Console:_
+
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
 Please set $ACCUMULO_HOME to the root of your Accumulo installation.
@@ -368,18 +390,25 @@ Note: Recompile with -Xlint:deprecation for details.
 25/02/28 20:47:22 INFO mapreduce.ImportJobBase: Transferred 8 bytes in 69.3222 seconds (0.1154 bytes/sec)
 25/02/28 20:47:22 INFO mapreduce.ImportJobBase: Retrieved 1 records.
 ```
-Imported File on HDFS:
+
+_Imported File on HDFS:_
 
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImportWithReqCols_Output.png)
 <br>
+
 ### 1.5. Sqoop Incremental import from a single table
+
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport.png)
 <br>
+
 To import entire data from a table to HDFS, execute the following Command
+
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --delete-target-dir --target-dir /user/cloudera/mvp/tableincimp
 ```
-Console:
+
+_Console:_
+
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
 Please set $ACCUMULO_HOME to the root of your Accumulo installation.
@@ -452,17 +481,21 @@ Note: Recompile with -Xlint:deprecation for details.
 25/02/28 23:27:52 INFO mapreduce.ImportJobBase: Transferred 27 bytes in 69.1183 seconds (0.3906 bytes/sec)
 25/02/28 23:27:52 INFO mapreduce.ImportJobBase: Retrieved 3 records.
 ```
-Imported File on HDFS:
+
+_Imported File on HDFS:_
 
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport_Full_Output.png)
 <br>
+
 To perform incremental loads(for new records) from a table to HDFS, execute the following Command
+
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --target-dir /user/cloudera/mvp/tableincimp --incremental append --check-column id --last-value 3
 ```
 > last value -> previous imported last record value
 
-Console:
+_Console:_
+
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
 Please set $ACCUMULO_HOME to the root of your Accumulo installation.
@@ -545,10 +578,12 @@ Note: Recompile with -Xlint:deprecation for details.
 25/02/28 23:35:26 INFO tool.ImportTool:   --last-value 5
 25/02/28 23:35:26 INFO tool.ImportTool: (Consider saving this with 'sqoop job --create')
 ```
-Imported File on HDFS:
+
+_Imported File on HDFS:_
 
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport_Inc_Output.png)
 <br>
+
 > A new part file gets created for each incremental run
 > Last value has to be noted down, in case incremental run is executed manually
 
@@ -556,13 +591,15 @@ Imported File on HDFS:
 
 ![Sqoop Import Export Example](./assets/images/SqoopFullImport.png)
 <br>
+
 To import entire table data to HDFS, execute the following Command
 
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryfullimp --query "select * from emp where \$CONDITIONS"
 ```
 
-Console:
+_Console:_
+
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
 Please set $ACCUMULO_HOME to the root of your Accumulo installation.
@@ -633,7 +670,7 @@ Note: Recompile with -Xlint:deprecation for details.
 25/02/28 23:59:46 INFO mapreduce.ImportJobBase: Retrieved 3 records.
 ```
 
-Imported File on HDFS:
+_Imported File on HDFS:_
 
 ![Sqoop Import Export Example](./assets/images/SqoopFullImport_Query_Output.png)
 <br>
@@ -649,7 +686,8 @@ To import specific columns data from a table to HDFS, execute the following Comm
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryfullimpreqcols --query "select name from emp where \$CONDITIONS"
 ```
 
-Console:
+_Console:_
+
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
 Please set $ACCUMULO_HOME to the root of your Accumulo installation.
@@ -719,7 +757,8 @@ Note: Recompile with -Xlint:deprecation for details.
 25/03/01 00:09:12 INFO mapreduce.ImportJobBase: Transferred 21 bytes in 69.0572 seconds (0.3041 bytes/sec)
 25/03/01 00:09:12 INFO mapreduce.ImportJobBase: Retrieved 3 records.
 ```
-Imported File on HDFS:
+
+_Imported File on HDFS:_
 
 ![Sqoop Import Export Example](./assets/images/SqoopFullImportWithReqCols_Query_Output.png)
 <br>
@@ -728,11 +767,15 @@ Imported File on HDFS:
 
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImport.png)
 <br>
+
 To import specific data(records) from a table to HDFS, execute the following Command
+
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryportionimp --query "select * from emp where name='praveen' and \$CONDITIONS"
 ```
-Console:
+
+_Console:_
+
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
 Please set $ACCUMULO_HOME to the root of your Accumulo installation.
@@ -802,7 +845,8 @@ Note: Recompile with -Xlint:deprecation for details.
 25/03/01 00:20:10 INFO mapreduce.ImportJobBase: Transferred 10 bytes in 69.0521 seconds (0.1448 bytes/sec)
 25/03/01 00:20:10 INFO mapreduce.ImportJobBase: Retrieved 1 records.
 ```
-Imported File on HDFS:
+
+_Imported File on HDFS:_
 
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImport_Query_Output.png)
 <br>
@@ -811,11 +855,15 @@ Imported File on HDFS:
 
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImportWithReqCols.png)
 <br>
+
 To import specific columns of specific data(records) from a table to HDFS, execute the following Command
+
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryportionimpreqcols --query "select name from emp where name='praveen' and \$CONDITIONS"
 ```
-Console:
+
+_Console:_
+
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
 Please set $ACCUMULO_HOME to the root of your Accumulo installation.
@@ -885,7 +933,8 @@ Note: Recompile with -Xlint:deprecation for details.
 25/03/01 00:26:13 INFO mapreduce.ImportJobBase: Transferred 8 bytes in 64.02 seconds (0.125 bytes/sec)
 25/03/01 00:26:13 INFO mapreduce.ImportJobBase: Retrieved 1 records.
 ```
-Imported File on HDFS:
+
+_Imported File on HDFS:_
 
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImportWithReqCols_Query_Output.png)
 <br>
@@ -894,11 +943,15 @@ Imported File on HDFS:
 
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport.png)
 <br>
+
 To import entire data from a table to HDFS, execute the following Command
+
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryincimp --query "select * from emp where \$CONDITIONS"
 ```
-Console:
+
+_Console:_
+
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
 Please set $ACCUMULO_HOME to the root of your Accumulo installation.
@@ -968,17 +1021,22 @@ Note: Recompile with -Xlint:deprecation for details.
 25/03/01 00:31:29 INFO mapreduce.ImportJobBase: Transferred 27 bytes in 66.0334 seconds (0.4089 bytes/sec)
 25/03/01 00:31:29 INFO mapreduce.ImportJobBase: Retrieved 3 records.
 ```
-Imported File on HDFS:
+
+_Imported File on HDFS:_
 
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport_Full_Query_Output.png)
 <br>
+
 To perform incremental loads(for new records) from a table to HDFS, execute the following Command
+
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --target-dir /user/cloudera/mvp/queryincimp --query "select * from emp where \$CONDITIONS" --incremental append --check-column id --last-value 3
 ```
+
 > last value -> previous imported last record value
 
-Console:
+_Console:_
+
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
 Please set $ACCUMULO_HOME to the root of your Accumulo installation.
@@ -1058,9 +1116,11 @@ Note: Recompile with -Xlint:deprecation for details.
 25/03/01 00:37:56 INFO tool.ImportTool:   --last-value 5
 25/03/01 00:37:56 INFO tool.ImportTool: (Consider saving this with 'sqoop job --create')
 ```
-Imported File on HDFS:
+
+_Imported File on HDFS:_
 
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport_Inc_Query_Output.png)
 <br>
+
 > A new part file gets created for each incremental run
 > Last value has to be noted down, in case incremental run is executed manually
