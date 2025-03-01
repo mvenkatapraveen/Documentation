@@ -1,4 +1,4 @@
-# Data Frames SQL & DSL Basics
+# Data Frames processing using SQL & DSL 
 
 ## 1. Create Data Frames and SQL Views (Prerequisites)
 Use the following code as a prerequisite for creating data frames and register data frames as SQL temporary views.
