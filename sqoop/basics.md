@@ -12,6 +12,7 @@ Using Sqoop
 <br>
 
 > Import --> Data from RDBMS to HDFS
+
 > Export --> Data from HDFS to RDBMS
 
 
@@ -43,7 +44,7 @@ To import entire table data to HDFS, execute the following Command
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --delete-target-dir --target-dir /user/cloudera/mvp/tablefullimp
 ```
 
-_Console:_
+**_Console:_**
 
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
@@ -118,7 +119,7 @@ Note: Recompile with -Xlint:deprecation for details.
 25/02/28 19:38:01 INFO mapreduce.ImportJobBase: Retrieved 3 records.
 ```
 
-_Imported File on HDFS:_
+**_Imported File on HDFS:_**
 
 ![Sqoop Import Export Example](./assets/images/SqoopFullImport_Output.png)
 <br>
@@ -134,7 +135,7 @@ To import specific columns data from a table to HDFS, execute the following Comm
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --delete-target-dir --target-dir /user/cloudera/mvp/tablefullimpreqcols --columns "name"
 ```
 
-_Console:_
+**_Console:_**
 
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
@@ -209,7 +210,7 @@ Note: Recompile with -Xlint:deprecation for details.
 25/02/28 19:57:34 INFO mapreduce.ImportJobBase: Retrieved 3 records.
 ```
 
-_Imported File on HDFS:_
+**_Imported File on HDFS:_**
 
 ![Sqoop Import Export Example](./assets/images/SqoopFullImportWithReqCols_Output.png)
 <br>
@@ -225,7 +226,7 @@ To import specific data(records) from a table to HDFS, execute the following Com
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --delete-target-dir --target-dir /user/cloudera/mvp/tableportionimp --where "name='praveen'"
 ```
 
-_Console:_
+**_Console:_**
 
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
@@ -300,7 +301,7 @@ Note: Recompile with -Xlint:deprecation for details.
 25/02/28 20:28:55 INFO mapreduce.ImportJobBase: Retrieved 1 records.
 ```
 
-_Imported File on HDFS:_
+**_Imported File on HDFS:_**
 
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImport_Output.png)
 <br>
@@ -316,7 +317,7 @@ To import specific columns of specific data(records) from a table to HDFS, execu
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --delete-target-dir --target-dir /user/cloudera/mvp/tableportionimpreqcols --where "name='praveen'" --columns "name"
 ```
 
-_Console:_
+**_Console:_**
 
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
@@ -391,7 +392,7 @@ Note: Recompile with -Xlint:deprecation for details.
 25/02/28 20:47:22 INFO mapreduce.ImportJobBase: Retrieved 1 records.
 ```
 
-_Imported File on HDFS:_
+**_Imported File on HDFS:_**
 
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImportWithReqCols_Output.png)
 <br>
@@ -407,7 +408,7 @@ To import entire data from a table to HDFS, execute the following Command
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --delete-target-dir --target-dir /user/cloudera/mvp/tableincimp
 ```
 
-_Console:_
+**_Console:_**
 
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
@@ -482,7 +483,7 @@ Note: Recompile with -Xlint:deprecation for details.
 25/02/28 23:27:52 INFO mapreduce.ImportJobBase: Retrieved 3 records.
 ```
 
-_Imported File on HDFS:_
+**_Imported File on HDFS:_**
 
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport_Full_Output.png)
 <br>
@@ -492,9 +493,9 @@ To perform incremental loads(for new records) from a table to HDFS, execute the 
 ```sh
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --table emp --target-dir /user/cloudera/mvp/tableincimp --incremental append --check-column id --last-value 3
 ```
-> last value -> previous imported last record value
+> last value -> previous imported last record value.
 
-_Console:_
+**_Console:_**
 
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
@@ -579,13 +580,13 @@ Note: Recompile with -Xlint:deprecation for details.
 25/02/28 23:35:26 INFO tool.ImportTool: (Consider saving this with 'sqoop job --create')
 ```
 
-_Imported File on HDFS:_
+**_Imported File on HDFS:_**
 
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport_Inc_Output.png)
 <br>
 
-> A new part file gets created for each incremental run
-> Last value has to be noted down, in case incremental run is executed manually
+> A new part file gets created for each incremental run.
+> Last value has to be noted down, in case incremental run is executed manually.
 
 ### 1.6. Sqoop Full import using Query clause
 
@@ -598,7 +599,7 @@ To import entire table data to HDFS, execute the following Command
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryfullimp --query "select * from emp where \$CONDITIONS"
 ```
 
-_Console:_
+**_Console:_**
 
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
@@ -670,7 +671,7 @@ Note: Recompile with -Xlint:deprecation for details.
 25/02/28 23:59:46 INFO mapreduce.ImportJobBase: Retrieved 3 records.
 ```
 
-_Imported File on HDFS:_
+**_Imported File on HDFS:_**
 
 ![Sqoop Import Export Example](./assets/images/SqoopFullImport_Query_Output.png)
 <br>
@@ -686,7 +687,7 @@ To import specific columns data from a table to HDFS, execute the following Comm
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryfullimpreqcols --query "select name from emp where \$CONDITIONS"
 ```
 
-_Console:_
+**_Console:_**
 
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
@@ -758,7 +759,7 @@ Note: Recompile with -Xlint:deprecation for details.
 25/03/01 00:09:12 INFO mapreduce.ImportJobBase: Retrieved 3 records.
 ```
 
-_Imported File on HDFS:_
+**_Imported File on HDFS:_**
 
 ![Sqoop Import Export Example](./assets/images/SqoopFullImportWithReqCols_Query_Output.png)
 <br>
@@ -774,7 +775,7 @@ To import specific data(records) from a table to HDFS, execute the following Com
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryportionimp --query "select * from emp where name='praveen' and \$CONDITIONS"
 ```
 
-_Console:_
+**_Console:_**
 
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
@@ -846,7 +847,7 @@ Note: Recompile with -Xlint:deprecation for details.
 25/03/01 00:20:10 INFO mapreduce.ImportJobBase: Retrieved 1 records.
 ```
 
-_Imported File on HDFS:_
+**_Imported File on HDFS:_**
 
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImport_Query_Output.png)
 <br>
@@ -862,7 +863,7 @@ To import specific columns of specific data(records) from a table to HDFS, execu
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryportionimpreqcols --query "select name from emp where name='praveen' and \$CONDITIONS"
 ```
 
-_Console:_
+**_Console:_**
 
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
@@ -934,7 +935,7 @@ Note: Recompile with -Xlint:deprecation for details.
 25/03/01 00:26:13 INFO mapreduce.ImportJobBase: Retrieved 1 records.
 ```
 
-_Imported File on HDFS:_
+**_Imported File on HDFS:_**
 
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImportWithReqCols_Query_Output.png)
 <br>
@@ -950,7 +951,7 @@ To import entire data from a table to HDFS, execute the following Command
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryincimp --query "select * from emp where \$CONDITIONS"
 ```
 
-_Console:_
+**_Console:_**
 
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
@@ -1022,7 +1023,7 @@ Note: Recompile with -Xlint:deprecation for details.
 25/03/01 00:31:29 INFO mapreduce.ImportJobBase: Retrieved 3 records.
 ```
 
-_Imported File on HDFS:_
+**_Imported File on HDFS:_**
 
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport_Full_Query_Output.png)
 <br>
@@ -1033,9 +1034,9 @@ To perform incremental loads(for new records) from a table to HDFS, execute the 
 sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --target-dir /user/cloudera/mvp/queryincimp --query "select * from emp where \$CONDITIONS" --incremental append --check-column id --last-value 3
 ```
 
-> last value -> previous imported last record value
+> last value -> previous imported last record value.
 
-_Console:_
+**_Console:_**
 
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
@@ -1117,10 +1118,275 @@ Note: Recompile with -Xlint:deprecation for details.
 25/03/01 00:37:56 INFO tool.ImportTool: (Consider saving this with 'sqoop job --create')
 ```
 
-_Imported File on HDFS:_
+**_Imported File on HDFS:_**
 
 ![Sqoop Import Export Example](./assets/images/SqoopIncrementalImport_Inc_Query_Output.png)
 <br>
 
-> A new part file gets created for each incremental run
-> Last value has to be noted down, in case incremental run is executed manually
+> A new part file gets created for each incremental run.
+
+> Last value has to be noted down, in case incremental run is executed manually.
+
+### 1.11.	Sqoop Query Full Imports using Joins
+
+![Sqoop Import Export Example](./assets/images/SqoopFullImport_Query_Joins.png)
+<br>
+
+To import entire table data to HDFS, execute the following Command
+
+```sh
+sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryfullimpusingjoins --query "select e.*,s.amount from emp e join sal s on e.id= s.id where \$CONDITIONS"
+```
+
+**_Console:_**
+
+```sh
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+25/03/01 02:03:27 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.12.0
+25/03/01 02:03:27 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+25/03/01 02:03:28 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+25/03/01 02:03:28 INFO tool.CodeGenTool: Beginning code generation
+25/03/01 02:03:30 INFO manager.SqlManager: Executing SQL statement: select e.*,s.amount from emp e join sal s on e.id= s.id where  (1 = 0)
+25/03/01 02:03:30 INFO manager.SqlManager: Executing SQL statement: select e.*,s.amount from emp e join sal s on e.id= s.id where  (1 = 0)
+25/03/01 02:03:30 INFO manager.SqlManager: Executing SQL statement: select e.*,s.amount from emp e join sal s on e.id= s.id where  (1 = 0)
+25/03/01 02:03:30 INFO orm.CompilationManager: HADOOP_MAPRED_HOME is /usr/lib/hadoop-mapreduce
+Note: /tmp/sqoop-cloudera/compile/8742e36c9f3e3089a4cb5055455c29e0/QueryResult.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+25/03/01 02:03:40 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-cloudera/compile/8742e36c9f3e3089a4cb5055455c29e0/QueryResult.jar
+25/03/01 02:03:46 INFO tool.ImportTool: Destination directory /user/cloudera/mvp/queryfullimpusingjoins deleted.
+25/03/01 02:03:46 INFO mapreduce.ImportJobBase: Beginning query import.
+25/03/01 02:03:46 INFO Configuration.deprecation: mapred.job.tracker is deprecated. Instead, use mapreduce.jobtracker.address
+25/03/01 02:03:46 INFO Configuration.deprecation: mapred.jar is deprecated. Instead, use mapreduce.job.jar
+25/03/01 02:03:46 INFO Configuration.deprecation: mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+25/03/01 02:03:47 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+25/03/01 02:03:54 INFO db.DBInputFormat: Using read commited transaction isolation
+25/03/01 02:03:55 INFO mapreduce.JobSubmitter: number of splits:1
+25/03/01 02:03:55 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1740822586699_0001
+25/03/01 02:03:59 INFO impl.YarnClientImpl: Submitted application application_1740822586699_0001
+25/03/01 02:04:00 INFO mapreduce.Job: The url to track the job: http://quickstart.cloudera:8088/proxy/application_1740822586699_0001/
+25/03/01 02:04:00 INFO mapreduce.Job: Running job: job_1740822586699_0001
+25/03/01 02:04:43 INFO mapreduce.Job: Job job_1740822586699_0001 running in uber mode : false
+25/03/01 02:04:43 INFO mapreduce.Job:  map 0% reduce 0%
+25/03/01 02:05:17 INFO mapreduce.Job:  map 100% reduce 0%
+25/03/01 02:05:18 INFO mapreduce.Job: Job job_1740822586699_0001 completed successfully
+25/03/01 02:05:19 INFO mapreduce.Job: Counters: 30
+	File System Counters
+		FILE: Number of bytes read=0
+		FILE: Number of bytes written=151348
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=87
+		HDFS: Number of bytes written=45
+		HDFS: Number of read operations=4
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters
+		Launched map tasks=1
+		Other local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=28816
+		Total time spent by all reduces in occupied slots (ms)=0
+		Total time spent by all map tasks (ms)=28816
+		Total vcore-milliseconds taken by all map tasks=28816
+		Total megabyte-milliseconds taken by all map tasks=29507584
+	Map-Reduce Framework
+		Map input records=3
+		Map output records=3
+		Input split bytes=87
+		Spilled Records=0
+		Failed Shuffles=0
+		Merged Map outputs=0
+		GC time elapsed (ms)=216
+		CPU time spent (ms)=5610
+		Physical memory (bytes) snapshot=185499648
+		Virtual memory (bytes) snapshot=1574395904
+		Total committed heap usage (bytes)=137887744
+	File Input Format Counters
+		Bytes Read=0
+	File Output Format Counters
+		Bytes Written=45
+25/03/01 02:05:19 INFO mapreduce.ImportJobBase: Transferred 45 bytes in 92.2163 seconds (0.488 bytes/sec)
+25/03/01 02:05:19 INFO mapreduce.ImportJobBase: Retrieved 3 records.
+```
+
+**_Imported File on HDFS:_**
+
+![Sqoop Import Export Example](./assets/images/SqoopFullImport_Query_Joins_Output.png)
+<br>
+
+### 1.12. Sqoop Query Full Imports with specific columns using Joins
+
+![Sqoop Import Export Example](./assets/images/SqoopFullImportWithReqCols_Query_Joins.png)
+<br>
+
+To import entire table data to HDFS, execute the following Command
+
+```sh
+sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryfullimpusingjoinsreqcols --query "select e.name,s.amount from emp e join sal s on e.id= s.id where \$CONDITIONS"
+```
+
+**_Console:_**
+
+```sh
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+25/03/01 02:18:01 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.12.0
+25/03/01 02:18:01 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+25/03/01 02:18:02 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+25/03/01 02:18:02 INFO tool.CodeGenTool: Beginning code generation
+25/03/01 02:18:05 INFO manager.SqlManager: Executing SQL statement: select e.name,s.amount from emp e join sal s on e.id= s.id where  (1 = 0)
+25/03/01 02:18:05 INFO manager.SqlManager: Executing SQL statement: select e.name,s.amount from emp e join sal s on e.id= s.id where  (1 = 0)
+25/03/01 02:18:05 INFO manager.SqlManager: Executing SQL statement: select e.name,s.amount from emp e join sal s on e.id= s.id where  (1 = 0)
+25/03/01 02:18:05 INFO orm.CompilationManager: HADOOP_MAPRED_HOME is /usr/lib/hadoop-mapreduce
+Note: /tmp/sqoop-cloudera/compile/8adff5d7cdfbdc8b280fa50d02b105c5/QueryResult.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+25/03/01 02:18:14 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-cloudera/compile/8adff5d7cdfbdc8b280fa50d02b105c5/QueryResult.jar
+25/03/01 02:18:19 INFO tool.ImportTool: Destination directory /user/cloudera/mvp/queryfullimpusingjoinsreqcols deleted.
+25/03/01 02:18:19 INFO mapreduce.ImportJobBase: Beginning query import.
+25/03/01 02:18:19 INFO Configuration.deprecation: mapred.job.tracker is deprecated. Instead, use mapreduce.jobtracker.address
+25/03/01 02:18:20 INFO Configuration.deprecation: mapred.jar is deprecated. Instead, use mapreduce.job.jar
+25/03/01 02:18:20 INFO Configuration.deprecation: mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+25/03/01 02:18:20 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+25/03/01 02:18:27 INFO db.DBInputFormat: Using read commited transaction isolation
+25/03/01 02:18:27 INFO mapreduce.JobSubmitter: number of splits:1
+25/03/01 02:18:28 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1740822586699_0002
+25/03/01 02:18:31 INFO impl.YarnClientImpl: Submitted application application_1740822586699_0002
+25/03/01 02:18:31 INFO mapreduce.Job: The url to track the job: http://quickstart.cloudera:8088/proxy/application_1740822586699_0002/
+25/03/01 02:18:31 INFO mapreduce.Job: Running job: job_1740822586699_0002
+25/03/01 02:19:07 INFO mapreduce.Job: Job job_1740822586699_0002 running in uber mode : false
+25/03/01 02:19:07 INFO mapreduce.Job:  map 0% reduce 0%
+25/03/01 02:19:36 INFO mapreduce.Job:  map 100% reduce 0%
+25/03/01 02:19:38 INFO mapreduce.Job: Job job_1740822586699_0002 completed successfully
+25/03/01 02:19:39 INFO mapreduce.Job: Counters: 30
+	File System Counters
+		FILE: Number of bytes read=0
+		FILE: Number of bytes written=151368
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=87
+		HDFS: Number of bytes written=39
+		HDFS: Number of read operations=4
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters
+		Launched map tasks=1
+		Other local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=26180
+		Total time spent by all reduces in occupied slots (ms)=0
+		Total time spent by all map tasks (ms)=26180
+		Total vcore-milliseconds taken by all map tasks=26180
+		Total megabyte-milliseconds taken by all map tasks=26808320
+	Map-Reduce Framework
+		Map input records=3
+		Map output records=3
+		Input split bytes=87
+		Spilled Records=0
+		Failed Shuffles=0
+		Merged Map outputs=0
+		GC time elapsed (ms)=379
+		CPU time spent (ms)=6120
+		Physical memory (bytes) snapshot=180019200
+		Virtual memory (bytes) snapshot=1559019520
+		Total committed heap usage (bytes)=137887744
+	File Input Format Counters
+		Bytes Read=0
+	File Output Format Counters
+		Bytes Written=39
+25/03/01 02:19:39 INFO mapreduce.ImportJobBase: Transferred 39 bytes in 79.4511 seconds (0.4909 bytes/sec)
+25/03/01 02:19:39 INFO mapreduce.ImportJobBase: Retrieved 3 records.
+```
+
+**_Imported File on HDFS:_**
+
+![Sqoop Import Export Example](./assets/images/SqoopFullImportWithReqCols_Query_Joins_Output.png)
+<br>
+
+### 1.13.	Sqoop Query Portion Imports using Joins
+
+![Sqoop Import Export Example](./assets/images/SqoopPortionImport_Query_Joins.png)
+<br>
+
+To import entire table data to HDFS, execute the following Command
+
+```sh
+sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --password cloudera --m 1 --delete-target-dir --target-dir /user/cloudera/mvp/queryportionimpusingjoins --query "select e.*,s.amount from emp e join sal s on e.id= s.id where s.amount>10000 and \$CONDITIONS"
+```
+
+**_Console:_**
+
+```sh
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+25/03/01 02:29:32 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.12.0
+25/03/01 02:29:32 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+25/03/01 02:29:33 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+25/03/01 02:29:33 INFO tool.CodeGenTool: Beginning code generation
+25/03/01 02:29:35 INFO manager.SqlManager: Executing SQL statement: select e.*,s.amount from emp e join sal s on e.id= s.id where s.amount>10000 and  (1 = 0)
+25/03/01 02:29:35 INFO manager.SqlManager: Executing SQL statement: select e.*,s.amount from emp e join sal s on e.id= s.id where s.amount>10000 and  (1 = 0)
+25/03/01 02:29:36 INFO manager.SqlManager: Executing SQL statement: select e.*,s.amount from emp e join sal s on e.id= s.id where s.amount>10000 and  (1 = 0)
+25/03/01 02:29:36 INFO orm.CompilationManager: HADOOP_MAPRED_HOME is /usr/lib/hadoop-mapreduce
+Note: /tmp/sqoop-cloudera/compile/5879e6889fd1145e5efa733261968494/QueryResult.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+25/03/01 02:29:45 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-cloudera/compile/5879e6889fd1145e5efa733261968494/QueryResult.jar
+25/03/01 02:29:51 INFO tool.ImportTool: Destination directory /user/cloudera/mvp/queryportionimpusingjoins deleted.
+25/03/01 02:29:51 INFO mapreduce.ImportJobBase: Beginning query import.
+25/03/01 02:29:51 INFO Configuration.deprecation: mapred.job.tracker is deprecated. Instead, use mapreduce.jobtracker.address
+25/03/01 02:29:51 INFO Configuration.deprecation: mapred.jar is deprecated. Instead, use mapreduce.job.jar
+25/03/01 02:29:51 INFO Configuration.deprecation: mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+25/03/01 02:29:51 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+25/03/01 02:29:58 INFO db.DBInputFormat: Using read commited transaction isolation
+25/03/01 02:29:59 INFO mapreduce.JobSubmitter: number of splits:1
+25/03/01 02:29:59 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1740822586699_0003
+25/03/01 02:30:02 INFO impl.YarnClientImpl: Submitted application application_1740822586699_0003
+25/03/01 02:30:02 INFO mapreduce.Job: The url to track the job: http://quickstart.cloudera:8088/proxy/application_1740822586699_0003/
+25/03/01 02:30:02 INFO mapreduce.Job: Running job: job_1740822586699_0003
+25/03/01 02:30:38 INFO mapreduce.Job: Job job_1740822586699_0003 running in uber mode : false
+25/03/01 02:30:38 INFO mapreduce.Job:  map 0% reduce 0%
+25/03/01 02:31:09 INFO mapreduce.Job:  map 100% reduce 0%
+25/03/01 02:31:10 INFO mapreduce.Job: Job job_1740822586699_0003 completed successfully
+25/03/01 02:31:11 INFO mapreduce.Job: Counters: 30
+	File System Counters
+		FILE: Number of bytes read=0
+		FILE: Number of bytes written=151398
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=87
+		HDFS: Number of bytes written=29
+		HDFS: Number of read operations=4
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters
+		Launched map tasks=1
+		Other local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=27206
+		Total time spent by all reduces in occupied slots (ms)=0
+		Total time spent by all map tasks (ms)=27206
+		Total vcore-milliseconds taken by all map tasks=27206
+		Total megabyte-milliseconds taken by all map tasks=27858944
+	Map-Reduce Framework
+		Map input records=2
+		Map output records=2
+		Input split bytes=87
+		Spilled Records=0
+		Failed Shuffles=0
+		Merged Map outputs=0
+		GC time elapsed (ms)=364
+		CPU time spent (ms)=6410
+		Physical memory (bytes) snapshot=181723136
+		Virtual memory (bytes) snapshot=1566208000
+		Total committed heap usage (bytes)=137887744
+	File Input Format Counters
+		Bytes Read=0
+	File Output Format Counters
+		Bytes Written=29
+25/03/01 02:31:11 INFO mapreduce.ImportJobBase: Transferred 29 bytes in 79.7353 seconds (0.3637 bytes/sec)
+25/03/01 02:31:11 INFO mapreduce.ImportJobBase: Retrieved 2 records.
+```
+
+**_Imported File on HDFS:_**
+
+![Sqoop Import Export Example](./assets/images/SqoopPortionImport_Query_Joins_Output.png)
+<br>
