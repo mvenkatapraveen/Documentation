@@ -35,7 +35,7 @@ sqoop import --connect jdbc:mysql://<Hostname>:<PortNumber>/<Database> --usernam
 
 ### 1.1. Sqoop Full Import
 
-Import entire data from SQl table to HDFS.
+Import entire data from SQL table to HDFS.
 
 #### 1.1.1. Sqoop Full Import from a single table
 
@@ -483,7 +483,7 @@ Note: Recompile with -Xlint:deprecation for details.
 ![Sqoop Import Export Example](./assets/images/SqoopFullImport_Query_Joins_Output.png)
 <br>
 
-### 1.1.6. Sqoop Query Full Imports with specific columns using Joins
+#### 1.1.6. Sqoop Query Full Imports with specific columns using Joins
 
 ![Sqoop Import Export Example](./assets/images/SqoopFullImportWithReqCols_Query_Joins.png)
 <br>
@@ -846,7 +846,7 @@ Note: Recompile with -Xlint:deprecation for details.
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImport_Query_Output.png)
 <br>
 
-### 1.2.4. Sqoop Portion import using Query clause with specific columns
+#### 1.2.4. Sqoop Portion import using Query clause with specific columns
 
 ![Sqoop Import Export Example](./assets/images/SqoopPortionImportWithReqCols.png)
 <br>
@@ -1113,7 +1113,7 @@ Note: Recompile with -Xlint:deprecation for details.
 
 ### 1.3. Sqoop Incremental Import
 
-Import newly inserted records from SQL table to HDFS.
+Import entire data on first run and newly inserted records on subsequent runs from SQL table to HDFS.
 
 #### 1.3.1. Sqoop Incremental Import from a single table
 
