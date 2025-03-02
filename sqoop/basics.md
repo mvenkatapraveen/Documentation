@@ -1716,13 +1716,13 @@ Multiple tables using query clause:
 sqoop job --create <JobName> -- import --connect jdbc:mysql://<HostName>:<PortNo>/<Database> --username <Username> --password-file <FileLocation> --m 1 --query <Query> --target-dir <TargetDirectory> --incremental append --check-column id --last-value 0
 ```
 
-**Execute the Job:_**
+**_Execute the Job:_**
 
 ```sh
 sqoop job --exec <JobName>
 ```
 
-Basic job commands:
+**_Basic job commands:_**
 
 > Job usage instructions
 
@@ -1754,7 +1754,7 @@ sqoop job --exec <JobId>
 sqoop job --delete <JobId>
 ```
 
-#### 1.16.1 Sqoop job on single table
+#### 1.16.1. Sqoop job on single table
 
 ![Sqoop Import Export Example](./assets/images/SqoopJobTable.png)
 <br>
@@ -1790,39 +1790,43 @@ sqoop job --exec tablejob
 ```sh
 Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
 Please set $ACCUMULO_HOME to the root of your Accumulo installation.
-25/03/01 19:34:42 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.12.0
-25/03/01 19:34:48 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
-25/03/01 19:34:48 INFO tool.CodeGenTool: Beginning code generation
-25/03/01 19:34:49 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `emp` AS t LIMIT 1
-25/03/01 19:34:49 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `emp` AS t LIMIT 1
-25/03/01 19:34:50 INFO orm.CompilationManager: HADOOP_MAPRED_HOME is /usr/lib/hadoop-mapreduce
-Note: /tmp/sqoop-cloudera/compile/964940492ae12deda7621c377299efc2/emp.java uses or overrides a deprecated API.
+25/03/01 20:39:50 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.12.0
+[cloudera@quickstart ~]$ sqoop job --exec tablejob
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+25/03/01 20:40:08 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.12.0
+25/03/01 20:40:14 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+25/03/01 20:40:14 INFO tool.CodeGenTool: Beginning code generation
+25/03/01 20:40:16 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `emp` AS t LIMIT 1
+25/03/01 20:40:16 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `emp` AS t LIMIT 1
+25/03/01 20:40:16 INFO orm.CompilationManager: HADOOP_MAPRED_HOME is /usr/lib/hadoop-mapreduce
+Note: /tmp/sqoop-cloudera/compile/74270e80b2777f415ca7aea2ba70d0d0/emp.java uses or overrides a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.
-25/03/01 19:34:59 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-cloudera/compile/964940492ae12deda7621c377299efc2/emp.jar
-25/03/01 19:35:01 INFO tool.ImportTool: Maximal id query for free form incremental import: SELECT MAX(`id`) FROM `emp`
-25/03/01 19:35:01 INFO tool.ImportTool: Incremental import based on column `id`
-25/03/01 19:35:01 INFO tool.ImportTool: Lower bound value: 0
-25/03/01 19:35:01 INFO tool.ImportTool: Upper bound value: 3
-25/03/01 19:35:01 WARN manager.MySQLManager: It looks like you are importing from mysql.
-25/03/01 19:35:01 WARN manager.MySQLManager: This transfer can be faster! Use the --direct
-25/03/01 19:35:01 WARN manager.MySQLManager: option to exercise a MySQL-specific fast path.
-25/03/01 19:35:01 INFO manager.MySQLManager: Setting zero DATETIME behavior to convertToNull (mysql)
-25/03/01 19:35:01 INFO mapreduce.ImportJobBase: Beginning import of emp
-25/03/01 19:35:01 INFO Configuration.deprecation: mapred.job.tracker is deprecated. Instead, use mapreduce.jobtracker.address
-25/03/01 19:35:01 INFO Configuration.deprecation: mapred.jar is deprecated. Instead, use mapreduce.job.jar
-25/03/01 19:35:01 INFO Configuration.deprecation: mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
-25/03/01 19:35:02 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
-25/03/01 19:35:09 INFO db.DBInputFormat: Using read commited transaction isolation
-25/03/01 19:35:09 INFO mapreduce.JobSubmitter: number of splits:1
-25/03/01 19:35:11 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1740885747866_0001
-25/03/01 19:35:13 INFO impl.YarnClientImpl: Submitted application application_1740885747866_0001
-25/03/01 19:35:14 INFO mapreduce.Job: The url to track the job: http://quickstart.cloudera:8088/proxy/application_1740885747866_0001/
-25/03/01 19:35:14 INFO mapreduce.Job: Running job: job_1740885747866_0001
-25/03/01 19:35:57 INFO mapreduce.Job: Job job_1740885747866_0001 running in uber mode : false
-25/03/01 19:35:57 INFO mapreduce.Job:  map 0% reduce 0%
-25/03/01 19:36:34 INFO mapreduce.Job:  map 100% reduce 0%
-25/03/01 19:36:35 INFO mapreduce.Job: Job job_1740885747866_0001 completed successfully
-25/03/01 19:36:36 INFO mapreduce.Job: Counters: 30
+25/03/01 20:40:25 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-cloudera/compile/74270e80b2777f415ca7aea2ba70d0d0/emp.jar
+25/03/01 20:40:27 INFO tool.ImportTool: Maximal id query for free form incremental import: SELECT MAX(`id`) FROM `emp`
+25/03/01 20:40:27 INFO tool.ImportTool: Incremental import based on column `id`
+25/03/01 20:40:27 INFO tool.ImportTool: Lower bound value: 0
+25/03/01 20:40:27 INFO tool.ImportTool: Upper bound value: 3
+25/03/01 20:40:27 WARN manager.MySQLManager: It looks like you are importing from mysql.
+25/03/01 20:40:27 WARN manager.MySQLManager: This transfer can be faster! Use the --direct
+25/03/01 20:40:27 WARN manager.MySQLManager: option to exercise a MySQL-specific fast path.
+25/03/01 20:40:27 INFO manager.MySQLManager: Setting zero DATETIME behavior to convertToNull (mysql)
+25/03/01 20:40:27 INFO mapreduce.ImportJobBase: Beginning import of emp
+25/03/01 20:40:27 INFO Configuration.deprecation: mapred.job.tracker is deprecated. Instead, use mapreduce.jobtracker.address
+25/03/01 20:40:27 INFO Configuration.deprecation: mapred.jar is deprecated. Instead, use mapreduce.job.jar
+25/03/01 20:40:27 INFO Configuration.deprecation: mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+25/03/01 20:40:28 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+25/03/01 20:40:34 INFO db.DBInputFormat: Using read commited transaction isolation
+25/03/01 20:40:34 INFO mapreduce.JobSubmitter: number of splits:1
+25/03/01 20:40:35 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1740885747866_0005
+25/03/01 20:40:37 INFO impl.YarnClientImpl: Submitted application application_1740885747866_0005
+25/03/01 20:40:37 INFO mapreduce.Job: The url to track the job: http://quickstart.cloudera:8088/proxy/application_1740885747866_0005/
+25/03/01 20:40:37 INFO mapreduce.Job: Running job: job_1740885747866_0005
+25/03/01 20:41:05 INFO mapreduce.Job: Job job_1740885747866_0005 running in uber mode : false
+25/03/01 20:41:05 INFO mapreduce.Job:  map 0% reduce 0%
+25/03/01 20:41:30 INFO mapreduce.Job:  map 100% reduce 0%
+25/03/01 20:41:31 INFO mapreduce.Job: Job job_1740885747866_0005 completed successfully
+25/03/01 20:41:32 INFO mapreduce.Job: Counters: 30
 	File System Counters
 		FILE: Number of bytes read=0
 		FILE: Number of bytes written=152446
@@ -1837,11 +1841,11 @@ Note: Recompile with -Xlint:deprecation for details.
 	Job Counters
 		Launched map tasks=1
 		Other local map tasks=1
-		Total time spent by all maps in occupied slots (ms)=32380
+		Total time spent by all maps in occupied slots (ms)=21276
 		Total time spent by all reduces in occupied slots (ms)=0
-		Total time spent by all map tasks (ms)=32380
-		Total vcore-milliseconds taken by all map tasks=32380
-		Total megabyte-milliseconds taken by all map tasks=33157120
+		Total time spent by all map tasks (ms)=21276
+		Total vcore-milliseconds taken by all map tasks=21276
+		Total megabyte-milliseconds taken by all map tasks=21786624
 	Map-Reduce Framework
 		Map input records=3
 		Map output records=3
@@ -1849,21 +1853,20 @@ Note: Recompile with -Xlint:deprecation for details.
 		Spilled Records=0
 		Failed Shuffles=0
 		Merged Map outputs=0
-		GC time elapsed (ms)=655
-		CPU time spent (ms)=6320
-		Physical memory (bytes) snapshot=191516672
-		Virtual memory (bytes) snapshot=1573421056
+		GC time elapsed (ms)=466
+		CPU time spent (ms)=5720
+		Physical memory (bytes) snapshot=190562304
+		Virtual memory (bytes) snapshot=1576976384
 		Total committed heap usage (bytes)=137887744
 	File Input Format Counters
 		Bytes Read=0
 	File Output Format Counters
 		Bytes Written=27
-25/03/01 19:36:36 INFO mapreduce.ImportJobBase: Transferred 27 bytes in 95.0858 seconds (0.284 bytes/sec)
-25/03/01 19:36:36 INFO mapreduce.ImportJobBase: Retrieved 3 records.
-25/03/01 19:36:36 INFO util.AppendUtils: Appending to directory tablejob
-25/03/01 19:36:37 INFO util.AppendUtils: Using found partition 2
-25/03/01 19:36:37 INFO tool.ImportTool: Saving incremental import state to the metastore
-25/03/01 19:36:37 INFO tool.ImportTool: Updated data for job: tablejob
+25/03/01 20:41:32 INFO mapreduce.ImportJobBase: Transferred 27 bytes in 64.5855 seconds (0.4181 bytes/sec)
+25/03/01 20:41:32 INFO mapreduce.ImportJobBase: Retrieved 3 records.
+25/03/01 20:41:32 INFO util.AppendUtils: Creating missing output directory - tablejob
+25/03/01 20:41:32 INFO tool.ImportTool: Saving incremental import state to the metastore
+25/03/01 20:41:32 INFO tool.ImportTool: Updated data for job: tablejob
 ```
 
 **_Imported File on HDFS:_**
@@ -1962,4 +1965,206 @@ Note: Recompile with -Xlint:deprecation for details.
 **_Imported File on HDFS:_**
 
 ![Sqoop Import Export Example](./assets/images/SqoopJobTable_Inc_Output.png)
+<br>
+
+#### 1.16.2. Sqoop job using query clause joins
+
+![Sqoop Import Export Example](./assets/images/SqoopJobTable_Joins.png)
+<br>
+
+For creating a Sqoop Job, execute the following Command
+
+```sh
+sqoop job --create queryjob -- import --connect jdbc:mysql://localhost:3306/mvp --username root --password-file file:///home/cloudera/passfile --m 1 --query "select e.*,s.amount from emp e join sal s using (id) where \$CONDITIONS" --target-dir /user/cloudera/mvp/queryjob --incremental append --check-column id --last-value 0
+```
+
+**_Console:_**
+
+```sh
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+25/03/01 20:32:44 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.12.0
+```
+
+> Does not give any error in case sqoop job gets created.
+
+Keep Executing the job
+- when executed first time -> it will load all records.
+- from next execution onwards it will load the newly inserted records.
+
+Execute job: (First execution will load entire data -> Full Import)
+
+```sh
+sqoop job --exec queryjob
+```
+
+**_Console:_**
+
+```sh
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+25/03/01 20:43:31 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.12.0
+25/03/01 20:43:38 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+25/03/01 20:43:38 INFO tool.CodeGenTool: Beginning code generation
+25/03/01 20:43:39 INFO manager.SqlManager: Executing SQL statement: select e.*,s.amount from emp e join sal s using (id) where  (1 = 0)
+25/03/01 20:43:40 INFO manager.SqlManager: Executing SQL statement: select e.*,s.amount from emp e join sal s using (id) where  (1 = 0)
+25/03/01 20:43:40 INFO manager.SqlManager: Executing SQL statement: select e.*,s.amount from emp e join sal s using (id) where  (1 = 0)
+25/03/01 20:43:40 INFO orm.CompilationManager: HADOOP_MAPRED_HOME is /usr/lib/hadoop-mapreduce
+Note: /tmp/sqoop-cloudera/compile/07d475420e94f9deb49aa2f6c255b5b4/QueryResult.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+25/03/01 20:43:49 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-cloudera/compile/07d475420e94f9deb49aa2f6c255b5b4/QueryResult.jar
+25/03/01 20:43:52 INFO tool.ImportTool: Maximal id query for free form incremental import: SELECT MAX(`id`) FROM (select e.*,s.amount from emp e join sal s using (id) where (1 = 1)) sqoop_import_query_alias
+25/03/01 20:43:52 INFO tool.ImportTool: Incremental import based on column `id`
+25/03/01 20:43:52 INFO tool.ImportTool: Lower bound value: 0
+25/03/01 20:43:52 INFO tool.ImportTool: Upper bound value: 3
+25/03/01 20:43:52 INFO mapreduce.ImportJobBase: Beginning query import.
+25/03/01 20:43:52 INFO Configuration.deprecation: mapred.job.tracker is deprecated. Instead, use mapreduce.jobtracker.address
+25/03/01 20:43:52 INFO Configuration.deprecation: mapred.jar is deprecated. Instead, use mapreduce.job.jar
+25/03/01 20:43:52 INFO Configuration.deprecation: mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+25/03/01 20:43:52 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+25/03/01 20:44:00 INFO db.DBInputFormat: Using read commited transaction isolation
+25/03/01 20:44:00 INFO mapreduce.JobSubmitter: number of splits:1
+25/03/01 20:44:01 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1740885747866_0006
+25/03/01 20:44:02 INFO impl.YarnClientImpl: Submitted application application_1740885747866_0006
+25/03/01 20:44:03 INFO mapreduce.Job: The url to track the job: http://quickstart.cloudera:8088/proxy/application_1740885747866_0006/
+25/03/01 20:44:03 INFO mapreduce.Job: Running job: job_1740885747866_0006
+25/03/01 20:44:32 INFO mapreduce.Job: Job job_1740885747866_0006 running in uber mode : false
+25/03/01 20:44:32 INFO mapreduce.Job:  map 0% reduce 0%
+25/03/01 20:44:54 INFO mapreduce.Job:  map 100% reduce 0%
+25/03/01 20:44:55 INFO mapreduce.Job: Job job_1740885747866_0006 completed successfully
+25/03/01 20:44:56 INFO mapreduce.Job: Counters: 30
+	File System Counters
+		FILE: Number of bytes read=0
+		FILE: Number of bytes written=152113
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=87
+		HDFS: Number of bytes written=45
+		HDFS: Number of read operations=4
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters
+		Launched map tasks=1
+		Other local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=20643
+		Total time spent by all reduces in occupied slots (ms)=0
+		Total time spent by all map tasks (ms)=20643
+		Total vcore-milliseconds taken by all map tasks=20643
+		Total megabyte-milliseconds taken by all map tasks=21138432
+	Map-Reduce Framework
+		Map input records=3
+		Map output records=3
+		Input split bytes=87
+		Spilled Records=0
+		Failed Shuffles=0
+		Merged Map outputs=0
+		GC time elapsed (ms)=267
+		CPU time spent (ms)=5620
+		Physical memory (bytes) snapshot=194572288
+		Virtual memory (bytes) snapshot=1566740480
+		Total committed heap usage (bytes)=137887744
+	File Input Format Counters
+		Bytes Read=0
+	File Output Format Counters
+		Bytes Written=45
+25/03/01 20:44:56 INFO mapreduce.ImportJobBase: Transferred 45 bytes in 64.2265 seconds (0.7006 bytes/sec)
+25/03/01 20:44:56 INFO mapreduce.ImportJobBase: Retrieved 3 records.
+25/03/01 20:44:56 INFO util.AppendUtils: Creating missing output directory - queryjob
+25/03/01 20:44:56 INFO tool.ImportTool: Saving incremental import state to the metastore
+25/03/01 20:44:56 INFO tool.ImportTool: Updated data for job: queryjob
+```
+
+**_Imported File on HDFS:_**
+
+![Sqoop Import Export Example](./assets/images/SqoopJobTable_Full_Joins_Output.png)
+<br>
+
+Keep Executing job: (Subsequent execution will load newly inserted records -> Incremental Import)
+
+```sh
+sqoop job --exec queryjob
+```
+
+**_Console:_**
+
+```sh
+Warning: /usr/lib/sqoop/../accumulo does not exist! Accumulo imports will fail.
+Please set $ACCUMULO_HOME to the root of your Accumulo installation.
+25/03/01 20:47:34 INFO sqoop.Sqoop: Running Sqoop version: 1.4.6-cdh5.12.0
+25/03/01 20:47:41 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+25/03/01 20:47:41 INFO tool.CodeGenTool: Beginning code generation
+25/03/01 20:47:42 INFO manager.SqlManager: Executing SQL statement: select e.*,s.amount from emp e join sal s using (id) where  (1 = 0)
+25/03/01 20:47:42 INFO manager.SqlManager: Executing SQL statement: select e.*,s.amount from emp e join sal s using (id) where  (1 = 0)
+25/03/01 20:47:42 INFO manager.SqlManager: Executing SQL statement: select e.*,s.amount from emp e join sal s using (id) where  (1 = 0)
+25/03/01 20:47:42 INFO orm.CompilationManager: HADOOP_MAPRED_HOME is /usr/lib/hadoop-mapreduce
+Note: /tmp/sqoop-cloudera/compile/31c31265e0cc10b387a02bff14fce6a5/QueryResult.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+25/03/01 20:47:51 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-cloudera/compile/31c31265e0cc10b387a02bff14fce6a5/QueryResult.jar
+25/03/01 20:47:53 INFO tool.ImportTool: Maximal id query for free form incremental import: SELECT MAX(`id`) FROM (select e.*,s.amount from emp e join sal s using (id) where (1 = 1)) sqoop_import_query_alias
+25/03/01 20:47:53 INFO tool.ImportTool: Incremental import based on column `id`
+25/03/01 20:47:53 INFO tool.ImportTool: Lower bound value: 3
+25/03/01 20:47:53 INFO tool.ImportTool: Upper bound value: 4
+25/03/01 20:47:53 INFO mapreduce.ImportJobBase: Beginning query import.
+25/03/01 20:47:53 INFO Configuration.deprecation: mapred.job.tracker is deprecated. Instead, use mapreduce.jobtracker.address
+25/03/01 20:47:54 INFO Configuration.deprecation: mapred.jar is deprecated. Instead, use mapreduce.job.jar
+25/03/01 20:47:54 INFO Configuration.deprecation: mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+25/03/01 20:47:54 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+25/03/01 20:48:02 INFO db.DBInputFormat: Using read commited transaction isolation
+25/03/01 20:48:02 INFO mapreduce.JobSubmitter: number of splits:1
+25/03/01 20:48:03 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1740885747866_0007
+25/03/01 20:48:04 INFO impl.YarnClientImpl: Submitted application application_1740885747866_0007
+25/03/01 20:48:05 INFO mapreduce.Job: The url to track the job: http://quickstart.cloudera:8088/proxy/application_1740885747866_0007/
+25/03/01 20:48:05 INFO mapreduce.Job: Running job: job_1740885747866_0007
+25/03/01 20:48:32 INFO mapreduce.Job: Job job_1740885747866_0007 running in uber mode : false
+25/03/01 20:48:32 INFO mapreduce.Job:  map 0% reduce 0%
+25/03/01 20:48:57 INFO mapreduce.Job:  map 100% reduce 0%
+25/03/01 20:48:58 INFO mapreduce.Job: Job job_1740885747866_0007 completed successfully
+25/03/01 20:48:59 INFO mapreduce.Job: Counters: 30
+	File System Counters
+		FILE: Number of bytes read=0
+		FILE: Number of bytes written=152113
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=87
+		HDFS: Number of bytes written=13
+		HDFS: Number of read operations=4
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters
+		Launched map tasks=1
+		Other local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=21719
+		Total time spent by all reduces in occupied slots (ms)=0
+		Total time spent by all map tasks (ms)=21719
+		Total vcore-milliseconds taken by all map tasks=21719
+		Total megabyte-milliseconds taken by all map tasks=22240256
+	Map-Reduce Framework
+		Map input records=1
+		Map output records=1
+		Input split bytes=87
+		Spilled Records=0
+		Failed Shuffles=0
+		Merged Map outputs=0
+		GC time elapsed (ms)=224
+		CPU time spent (ms)=6070
+		Physical memory (bytes) snapshot=186437632
+		Virtual memory (bytes) snapshot=1569107968
+		Total committed heap usage (bytes)=137887744
+	File Input Format Counters
+		Bytes Read=0
+	File Output Format Counters
+		Bytes Written=13
+25/03/01 20:48:59 INFO mapreduce.ImportJobBase: Transferred 13 bytes in 65.2211 seconds (0.1993 bytes/sec)
+25/03/01 20:48:59 INFO mapreduce.ImportJobBase: Retrieved 1 records.
+25/03/01 20:48:59 INFO util.AppendUtils: Appending to directory queryjob
+25/03/01 20:48:59 INFO util.AppendUtils: Using found partition 1
+25/03/01 20:48:59 INFO tool.ImportTool: Saving incremental import state to the metastore
+25/03/01 20:48:59 INFO tool.ImportTool: Updated data for job: queryjob
+```
+
+**_Imported File on HDFS:_**
+
+![Sqoop Import Export Example](./assets/images/SqoopJobTable_Inc_Joins_Output.png)
 <br>
