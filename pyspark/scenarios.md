@@ -1,6 +1,6 @@
-## Scenarios
+## 1. Basic Scenarios
 
-### 1. Generate the expected output data from the given data frames as shown below
+### 1.1. Generate the expected output data from the given data frames as shown below
 
 ```sh
 Input DF1:
@@ -121,7 +121,7 @@ DF2:
 |  5|    F|
 +---+-----+
 
-Step1: Combine both data frames using full join.
+Combine both data frames using full join.
 +---+----+-----+
 | id|name|name1|
 +---+----+-----+
@@ -132,7 +132,7 @@ Step1: Combine both data frames using full join.
 |  5|NULL|    F|
 +---+----+-----+
 
-Step2: New column as 'comment' and whose value will be 'matched' or 'mismatched' based on 'name' and 'name1' data.
+New column as 'comment' and whose value will be 'matched' or 'mismatched' based on 'name' and 'name1' data.
 +---+----+-----+-------------+
 | id|name|name1|      comment|
 +---+----+-----+-------------+
@@ -143,7 +143,7 @@ Step2: New column as 'comment' and whose value will be 'matched' or 'mismatched'
 |  5|NULL|    F|New in Target|
 +---+----+-----+-------------+
 
-Step3: Remove the matched records by filtering.
+Remove the matched records by filtering.
 +---+----+-----+-------------+
 | id|name|name1|      comment|
 +---+----+-----+-------------+
@@ -152,7 +152,7 @@ Step3: Remove the matched records by filtering.
 |  5|NULL|    F|New in Target|
 +---+----+-----+-------------+
 
-Step4: Drop unwanted columns to get the expected output.
+Drop unwanted columns to get the expected output.
 +---+-------------+
 | id|      comment|
 +---+-------------+
@@ -162,7 +162,7 @@ Step4: Drop unwanted columns to get the expected output.
 +---+-------------+
 ```
 
-### 2. Generate the expected output data from the given data frame as shown below
+### 1.2. Generate the expected output data from the given data frame as shown below
 
 ```sh
 Input DF:
@@ -286,4 +286,32 @@ Rename the column
 |    B|    BB|        BBB|
 |    C|    CC|        CCC|
 +-----+------+-----------+
+```
+
+
+## 2. Interview Scenarios
+
+### 2.1. Generate the expected output data from the given data frame as shown below
+
+```sh
+Input DF:
++--------+---------+--------+------+-------------------+------+
+|workerid|firstname|lastname|salary|        joiningdate|depart|
++--------+---------+--------+------+-------------------+------+
+|     001|   Monika|   Arora|100000|2014-02-20 09:00:00|    HR|
+|     002| Niharika|   Verma|300000|2014-06-11 09:00:00| Admin|
+|     003|   Vishal| Singhal|300000|2014-02-20 09:00:00|    HR|
+|     004|  Amitabh|   Singh|500000|2014-02-20 09:00:00| Admin|
+|     005|    Vivek|   Bhati|500000|2014-06-11 09:00:00| Admin|
++--------+---------+--------+------+-------------------+------+
+
+Expected Output:
++--------+---------+--------+------+-------------------+------+
+|workerid|firstname|lastname|salary|        joiningdate|depart|
++--------+---------+--------+------+-------------------+------+
+|     002| Niharika|   Verma|300000|2014-06-11 09:00:00| Admin|
+|     003|   Vishal| Singhal|300000|2014-02-20 09:00:00|    HR|
+|     004|  Amitabh|   Singh|500000|2014-02-20 09:00:00| Admin|
+|     005|    Vivek|   Bhati|500000|2014-06-11 09:00:00| Admin|
++--------+---------+--------+------+-------------------+------+
 ```
