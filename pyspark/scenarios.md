@@ -1,6 +1,6 @@
-## 1. Basic Scenarios
+## Basic Scenarios
 
-### 1.1. Generate the expected output data from the given data frames as shown below
+### 1. Generate the expected output data from the given data frames as shown below
 
 ```sh
 Input DF1:
@@ -162,7 +162,7 @@ Drop unwanted columns to get the expected output.
 +---+-------------+
 ```
 
-### 1.2. Generate the expected output data from the given data frame as shown below
+### 2. Generate the expected output data from the given data frame as shown below
 
 ```sh
 Input DF:
@@ -191,7 +191,7 @@ Expected Output:
 
 - Create two data frames from one Input
 - Join two data frames using inner join based on parent from one df and child from other df
-- drop the unnecessary columns
+- Drop the unnecessary columns
 
 **_Solution:_**
 
@@ -288,30 +288,142 @@ Rename the column
 +-----+------+-----------+
 ```
 
-
-## 2. Interview Scenarios
-
-### 2.1. Generate the expected output data from the given data frame as shown below
+### 3. Generate the expected output data from the given data frame as shown below
 
 ```sh
-Input DF:
-+--------+---------+--------+------+-------------------+------+
-|workerid|firstname|lastname|salary|        joiningdate|depart|
-+--------+---------+--------+------+-------------------+------+
-|     001|   Monika|   Arora|100000|2014-02-20 09:00:00|    HR|
-|     002| Niharika|   Verma|300000|2014-06-11 09:00:00| Admin|
-|     003|   Vishal| Singhal|300000|2014-02-20 09:00:00|    HR|
-|     004|  Amitabh|   Singh|500000|2014-02-20 09:00:00| Admin|
-|     005|    Vivek|   Bhati|500000|2014-06-11 09:00:00| Admin|
-+--------+---------+--------+------+-------------------+------+
+Input DF1:
++---+-----+
+| id| name|
++---+-----+
+|  1|Henry|
+|  2|Smith|
+|  3| Hall|
++---+-----+
+
+Input DF2:
++---+------+
+| id|salary|
++---+------+
+|  1|   100|
+|  2|   500|
+|  4|  1000|
++---+------+
 
 Expected Output:
-+--------+---------+--------+------+-------------------+------+
-|workerid|firstname|lastname|salary|        joiningdate|depart|
-+--------+---------+--------+------+-------------------+------+
-|     002| Niharika|   Verma|300000|2014-06-11 09:00:00| Admin|
-|     003|   Vishal| Singhal|300000|2014-02-20 09:00:00|    HR|
-|     004|  Amitabh|   Singh|500000|2014-02-20 09:00:00| Admin|
-|     005|    Vivek|   Bhati|500000|2014-06-11 09:00:00| Admin|
-+--------+---------+--------+------+-------------------+------+
++---+-----+------+
+| id| name|salary|
++---+-----+------+
+|  1|Henry|   100|
+|  2|Smith|   500|
+|  3| Hall|     0|
++---+-----+------+
+```
+
+**_Observation:_**
+
+- Join two data frames using left join because expected output has ids only from DF1
+- Replace null with 0
+
+**_Solution:_**
+
+```sh
+from pyspark import SparkConf, SparkContext
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import *
+conf = SparkConf().setAppName("pyspark").setMaster("local[*]").set("spark.driver.host","localhost").set("spark.default.parallelism", "1")
+sc = SparkContext(conf=conf)
+spark = SparkSession.builder.getOrCreate()
+
+
+print("===========INPUT DATA=============")
+data1 = [
+    (1, "Henry"),
+    (2, "Smith"),
+    (3, "Hall")
+]
+columns1 = ["id", "name"]
+rdd1 = sc.parallelize(data1,1)
+df1 = rdd1.toDF(columns1)
+print("DF1:")
+df1.show()
+
+
+data2 = [
+    (1, 100),
+    (2, 500),
+    (4, 1000)
+]
+columns2 = ["id", "salary"]
+rdd2 = sc.parallelize(data2,1)
+df2 = rdd2.toDF(columns2)
+print("DF2:")
+df2.show()
+
+
+print("Join Data:")
+joindf = df1.join(df2, ["id"], "left")
+joindf.show()
+
+print("Order By")
+ordereddf = joindf.orderBy("id")
+ordereddf.show()
+
+print("Final Output:")
+finaldf = ordereddf.withColumn("salary", expr("""
+    case
+    when salary is null then 0
+    else salary
+    end
+"""))
+finaldf.show()
+
+```
+
+**_Output:_**
+
+```sh
+DF1:
++---+-----+
+| id| name|
++---+-----+
+|  1|Henry|
+|  2|Smith|
+|  3| Hall|
++---+-----+
+
+DF2:
++---+------+
+| id|salary|
++---+------+
+|  1|   100|
+|  2|   500|
+|  4|  1000|
++---+------+
+
+Join Data:
++---+-----+------+
+| id| name|salary|
++---+-----+------+
+|  1|Henry|   100|
+|  3| Hall|  NULL|
+|  2|Smith|   500|
++---+-----+------+
+
+Order By
++---+-----+------+
+| id| name|salary|
++---+-----+------+
+|  1|Henry|   100|
+|  2|Smith|   500|
+|  3| Hall|  NULL|
++---+-----+------+
+
+Final Output:
++---+-----+------+
+| id| name|salary|
++---+-----+------+
+|  1|Henry|   100|
+|  2|Smith|   500|
+|  3| Hall|     0|
++---+-----+------+
 ```
