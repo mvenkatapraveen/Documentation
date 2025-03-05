@@ -20,4 +20,5 @@ This documentation provides a quick reference for basic commands used in **Sqoop
 PySpark is the Python API for Apache Spark, which allows data processing using distributed computing and is a popular tool for big data processing.
 
 **_3.1. [PySpark Basics using RDD and DF](./pyspark/basics.md)_**
-**_2.1. [Scenarios](./pyspark/scenarios.md)_**
+<br>
+**_3.2. [Scenarios](./pyspark/scenarios.md)_**
