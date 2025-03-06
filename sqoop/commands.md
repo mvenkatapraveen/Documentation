@@ -1,4 +1,4 @@
-# Sqoop Import & Export Commands
+# Sqoop Commands
 
 Advantages of Sqoop
 - Direct Imports are possible
