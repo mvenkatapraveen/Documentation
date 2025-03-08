@@ -5,21 +5,23 @@ This documentation provides a quick reference for basic commands used in **Sqoop
 ### What is Sqoop?
 **Sqoop** is a tool designed for efficiently transferring bulk data between relational databases and Apache Hadoop.
 
-**_[Sqoop Basics](./sqoop/basics.md)_**
+**_[1.1 Sqoop Commands](./sqoop/commands.md)_**
 
 ## 2. HIVE
 
 ### What is Hive?
 **Hive** is a data warehouse software built on top of Hadoop that allows querying and managing large datasets using a SQL-like language called HiveQL.
 
-**_[Hive Basics](./hive/basics.md)_**
+**_[Hive F](./hive/basics.md)_**
 
 ## 3. PySpark
 
 ### What is PySpark?
 PySpark is the Python API for Apache Spark, which allows data processing using distributed computing and is a popular tool for big data processing.
 
-**_[PySpark Basics using RDD and DF](./pyspark/basics.md)_**
+**_[RDD Basics](./pyspark/commands_rdd.md)_**
+<br>
+**_[Data Frames processing using SQL & DSL](./pyspark/commands_sql_dsl.md)_**
 <br>
 **_[Basic Scenarios](./pyspark/scenarios.md)_**
 <br>
