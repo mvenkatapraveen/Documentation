@@ -1,5 +1,5 @@
 # Sqoop Commands
-
+pb2pb
 Advantages of Sqoop
 - Direct Imports are possible
 - Portion Imports are possible
@@ -3864,9 +3864,13 @@ sqoop import --connect jdbc:mysql://localhost:3306/mvp --username root --passwor
 
 ## 5.	Sqoop Cloud Import
 
+Need Extra three details
+- Access Key
+- Secret Key
+- Endpoint
+
 To import data from table to Cloud storage, execute the following Command
 
-
 ```sh
-
+sqoop import -Dfs.s3a.access.key=<access_key> -Dfs.s3a.secret.key=<secret_key> -Dfs.s3a.endpoint=<endpoint> --connect jdbc:mysql://<HostName>:<PortNo>/<Database> --username <username> --password <password> --m 1 --table <table_name> --delete-target-dir --target-dir s3://your-bucket-name/
 ```
