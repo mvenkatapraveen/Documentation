@@ -427,3 +427,299 @@ Final Output:
 |  3| Hall|     0|
 +---+-----+------+
 ```
+
+### 4. Generate the expected output data from the given data frame as shown below
+
+```sh
+Input DF:
++-----+----+------+
+|empid|name|salary|
++-----+----+------+
+|    1|   a| 10000|
+|    2|   b|  5000|
+|    3|   c| 15000|
+|    4|   d| 25000|
+|    5|   e| 50000|
+|    6|   f|  7000|
++-----+----+------+
+
+Expected Output:
++-----+----+------+-----------+
+|empid|name|salary|Designation|
++-----+----+------+-----------+
+|    1|   a| 10000|   Employee|
+|    2|   b|  5000|   Employee|
+|    3|   c| 15000|    Manager|
+|    4|   d| 25000|    Manager|
+|    5|   e| 50000|    Manager|
+|    6|   f|  7000|   Employee|
++-----+----+------+-----------+
+```
+
+**_Observation:_**
+
+- If salary greater than 10000 then mark the designation as Manager else Employee
+
+**_Solution:_**
+
+```sh
+from pyspark import SparkConf, SparkContext
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import *
+conf = SparkConf().setAppName("pyspark").setMaster("local[*]").set("spark.driver.host","localhost").set("spark.default.parallelism", "1")
+sc = SparkContext(conf=conf)
+spark = SparkSession.builder.getOrCreate()
+
+data = [
+    ("1", "a", "10000"),
+    ("2", "b", "5000"),
+    ("3", "c", "15000"),
+    ("4", "d", "25000"),
+    ("5", "e", "50000"),
+    ("6", "f", "7000")
+]
+myschema = ["empid","name","salary"]
+df = spark.createDataFrame(data,schema=myschema)
+print("Input DF:")
+df.show()
+
+finaldf = df.withColumn("Designation", expr("""
+
+    case
+    when salary <= 10000 then 'Employee'
+    else 'Manager'
+    end
+
+"""))
+print("Output:")
+finaldf.show()
+```
+
+**_Output:_**
+
+```sh
+Input DF:
++-----+----+------+
+|empid|name|salary|
++-----+----+------+
+|    1|   a| 10000|
+|    2|   b|  5000|
+|    3|   c| 15000|
+|    4|   d| 25000|
+|    5|   e| 50000|
+|    6|   f|  7000|
++-----+----+------+
+
+Output:
++-----+----+------+-----------+
+|empid|name|salary|Designation|
++-----+----+------+-----------+
+|    1|   a| 10000|   Employee|
+|    2|   b|  5000|   Employee|
+|    3|   c| 15000|    Manager|
+|    4|   d| 25000|    Manager|
+|    5|   e| 50000|    Manager|
+|    6|   f|  7000|   Employee|
++-----+----+------+-----------+
+```
+
+### 5. Generate the expected output data from the given data frame as shown below
+
+```sh
+Input DF:
++---+----+-----------+------+
+| id|name|       dept|salary|
++---+----+-----------+------+
+|  1|Jhon|    Testing|  5000|
+|  2| Tim|Development|  6000|
+|  3|Jhon|Development|  5000|
+|  4| Sky| Prodcution|  8000|
++---+----+-----------+------+
+
+
+Expected Output:
++---+----+-----------+------+
+| id|name|       dept|salary|
++---+----+-----------+------+
+|  1|Jhon|    Testing|  5000|
+|  2| Tim|Development|  6000|
+|  4| Sky| Prodcution|  8000|
++---+----+-----------+------+
+```
+
+**_Observation:_**
+
+- Drop the duplicates based on name and salary if matched.
+
+**_Solution:_**
+
+```sh
+from pyspark import SparkConf, SparkContext
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import *
+conf = SparkConf().setAppName("pyspark").setMaster("local[*]").set("spark.driver.host","localhost").set("spark.default.parallelism", "1")
+sc = SparkContext(conf=conf)
+spark = SparkSession.builder.getOrCreate()
+
+
+data = [(1, "Jhon", "Testing", 5000),
+        (2, "Tim", "Development", 6000),
+        (3, "Jhon", "Development", 5000),
+        (4, "Sky", "Prodcution", 8000)]
+df = spark.createDataFrame(data, ["id", "name", "dept", "salary"])
+print("Input DF:")
+df.show()
+
+print("Dropping records based on matching names and salary")
+dropdupdf = df.drop_duplicates(["name", "salary"])
+dropdupdf.show()
+
+print("Ordering the data")
+ordereddf = dropdupdf.orderBy("id")
+ordereddf.show()
+```
+
+**_Output:_**
+
+```sh
+Input DF:
++---+----+-----------+------+
+| id|name|       dept|salary|
++---+----+-----------+------+
+|  1|Jhon|    Testing|  5000|
+|  2| Tim|Development|  6000|
+|  3|Jhon|Development|  5000|
+|  4| Sky| Prodcution|  8000|
++---+----+-----------+------+
+
+Dropping records based on matching names and salary
++---+----+-----------+------+
+| id|name|       dept|salary|
++---+----+-----------+------+
+|  1|Jhon|    Testing|  5000|
+|  4| Sky| Prodcution|  8000|
+|  2| Tim|Development|  6000|
++---+----+-----------+------+
+
+Ordering the data
++---+----+-----------+------+
+| id|name|       dept|salary|
++---+----+-----------+------+
+|  1|Jhon|    Testing|  5000|
+|  2| Tim|Development|  6000|
+|  4| Sky| Prodcution|  8000|
++---+----+-----------+------+
+```
+
+### 6. Generate the expected output data from the given data frame as shown below
+
+```sh
+Input DF1:
++---+
+|col|
++---+
+|  1|
+|  2|
+|  3|
++---+
+
+Input DF2:
++---+
+|col|
++---+
+|  1|
+|  2|
+|  3|
+|  4|
+|  5|
++---+
+
+Expected Output:
++---+
+|col|
++---+
+|  1|
+|  2|
+|  4|
+|  5|
++---+
+```
+
+**_Observation:_**
+
+- drop the max id matching record
+
+**_Solution:_**
+
+```sh
+from pyspark import SparkConf, SparkContext
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import *
+conf = SparkConf().setAppName("pyspark").setMaster("local[*]").set("spark.driver.host","localhost").set("spark.default.parallelism", "1")
+sc = SparkContext(conf=conf)
+spark = SparkSession.builder.getOrCreate()
+
+# Create df1
+df1 = spark.createDataFrame([("1",), ("2",), ("3",)], ["col"])
+
+# Show df1
+print("Input DF1:")
+df1.show()
+
+# Create df2
+df2 = spark.createDataFrame([("1",), ("2",), ("3",), ("4",), ("5",)], ["col"])
+
+# Show df2
+print("Input DF2:")
+df2.show()
+
+print("Finding max id")
+maxdf = df1.agg(max("col").alias("col"))
+maxdf.show()
+
+print("Anti Join")
+joindf = df2.join(maxdf , ["col"] , "left_anti")
+
+joindf.show()
+```
+
+**_Output:_**
+
+```sh
+Input DF1:
++---+
+|col|
++---+
+|  1|
+|  2|
+|  3|
++---+
+
+Input DF2:
++---+
+|col|
++---+
+|  1|
+|  2|
+|  3|
+|  4|
+|  5|
++---+
+
+Finding max id
++---+
+|col|
++---+
+|  3|
++---+
+
+Anti Join
++---+
+|col|
++---+
+|  1|
+|  2|
+|  4|
+|  5|
++---+
+```

@@ -25,6 +25,10 @@ Expected Output:
 +--------+---------+--------+------+-------------------+------+
 ```
 
+**_Observation:_**
+
+- Find the records with matching salaries
+
 **_Solution:_**
 
 ```sh
@@ -134,3 +138,34 @@ Select the columns in order
 |     005|    Vivek|   Bhati|500000| 2014-06-11 09:00:00| Admin|
 +--------+---------+--------+------+--------------------+------+
 ```
+
+
+### 2. Generate the expected output data from the given data frame as shown below
+
+```sh
+Input DF:
++-------+----------+----------+
+|orderid|statusdate|    status|
++-------+----------+----------+
+|      1|     1-Jan|   Ordered|
+|      1|     2-Jan|dispatched|
+|      1|     3-Jan|dispatched|
+|      1|     4-Jan|   Shipped|
+|      1|     5-Jan|   Shipped|
+|      1|     6-Jan| Delivered|
+|      2|     1-Jan|   Ordered|
+|      2|     2-Jan|dispatched|
+|      2|     3-Jan|   shipped|
++-------+----------+----------+
+
+Expected Output:
++-------+----------+----------+
+|orderid|statusdate|    status|
++-------+----------+----------+
+|      1|     2-Jan|dispatched|
+|      1|     3-Jan|dispatched|
+|      2|     2-Jan|dispatched|
++-------+----------+----------+
+```
+
+**_Observation:_**
