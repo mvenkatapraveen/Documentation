@@ -12,17 +12,17 @@ This documentation provides a quick reference for basic commands used in **Sqoop
 ### What is Hive?
 **Hive** is a data warehouse software built on top of Hadoop that allows querying and managing large datasets using a SQL-like language called HiveQL.
 
-**_[Hive F](./hive/basics.md)_**
+**_[2.1 Hive Basics](./hive/basics.md)_**
 
 ## 3. PySpark
 
 ### What is PySpark?
 PySpark is the Python API for Apache Spark, which allows data processing using distributed computing and is a popular tool for big data processing.
 
-**_[RDD Basics](./pyspark/commands_rdd.md)_**
+**_[3.1 RDD Basics](./pyspark/commands_rdd.md)_**
 <br>
-**_[Data Frames processing using SQL & DSL](./pyspark/commands_sql_dsl.md)_**
+**_[3.2 Data Frames processing using SQL & DSL](./pyspark/commands_sql_dsl.md)_**
 <br>
-**_[Basic Scenarios](./pyspark/scenarios.md)_**
+**_[3.3 Basic Scenarios](./pyspark/scenarios.md)_**
 <br>
-**_[Interview Scenarios](./pyspark/interview_scenarios.md)_**
+**_[3.4 Interview Scenarios](./pyspark/interview_scenarios.md)_**
