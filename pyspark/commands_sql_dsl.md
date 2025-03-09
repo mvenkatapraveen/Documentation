@@ -1102,8 +1102,16 @@ spark.sql("select category, amount, row_number() over (partition by category ord
 
 **Using DSL:**
 
-```sh
+Import Window functions:
 
+```sh
+from pyspark.sql.window import *
+```
+
+```sh
+rownumwindow = Window.partitionBy("category").orderBy(col("amount").desc())
+rownumdf = df.withColumn("rownum",row_number().over(rownumwindow))
+rownumdf.select("category", "amount", "rownum").show()
 ```
 
 **Output Using SQL/DSL:**
@@ -1129,8 +1137,17 @@ spark.sql("select category, amount,dense_rank() over (partition by category orde
 ```
 
 **Using DSL:**
-```sh
 
+Import Window functions:
+
+```sh
+from pyspark.sql.window import *
+```
+
+```sh
+denserankwindow = Window.partitionBy("category").orderBy(col("amount").desc())
+denserankdf = df.withColumn("dense_rank",dense_rank().over(denserankwindow))
+denserankdf.select("category", "amount", "dense_rank").show()
 ```
 
 **Output Using SQL/DSL:**
@@ -1157,8 +1174,16 @@ spark.sql("select category, amount,rank() over (partition by category order by a
 
 **Using DSL:**
 
-```sh
+Import Window functions:
 
+```sh
+from pyspark.sql.window import *
+```
+
+```sh
+rankwindow = Window.partitionBy("category").orderBy(col("amount").desc())
+rankdf = df.withColumn("rank",rank().over(rankwindow))
+rankdf.select("category", "amount", "rank").show()
 ```
 
 **Output Using SQL/DSL:**
@@ -1184,23 +1209,33 @@ spark.sql("select category, lead(amount) over (partition by category order by am
 ```
 
 **Using DSL:**
-```sh
 
+Import Window functions:
+
+```sh
+from pyspark.sql.window import *
+```
+
+```sh
+leadwindow = Window.partitionBy("category").orderBy(col("amount").desc())
+leaddf = df.withColumn("lead",lead("amount").over(leadwindow))
+leaddf.select("category", "amount", "lead").show()
 ```
 
 **Output Using SQL/DSL:**
 
-|     category| lead|
-| ------ | ------ |
-|     Exercise|300.4|
-|     Exercise|100.0|
-|     Exercise| NULL|
-|Exercise Band| NULL|
-|   Gymnastics|200.0|
-|   Gymnastics|100.0|
-|   Gymnastics| NULL|
-|  Team Sports|300.0|
-|  Team Sports| NULL|
+|     category|amount| lead|
+| ------ | ------ | ------ |
+|     Exercise| 300.4|300.4|
+|     Exercise| 300.4|100.0|
+|     Exercise| 100.0| NULL|
+|Exercise Band| 200.0| NULL|
+|   Gymnastics| 200.0|200.0|
+|   Gymnastics| 200.0|100.0|
+|   Gymnastics| 100.0| NULL|
+|  Team Sports| 300.0|300.0|
+|  Team Sports| 300.0| NULL|
+
 
 ### 2.39. Window Functions: Lag
 
@@ -1211,23 +1246,32 @@ spark.sql("select category, lag(amount) over (partition by category order by amo
 ```
 
 **Using DSL:**
-```sh
 
+Import Window functions:
+
+```sh
+from pyspark.sql.window import *
+```
+
+```sh
+lagwindow = Window.partitionBy("category").orderBy(col("amount").desc())
+lagdf = df.withColumn("lead",lag("amount").over(lagwindow))
+lagdf.select("category", "amount", "lead").show()
 ```
 
 **Output Using SQL/DSL:**
 
-|     category|  lag|
-| ------ | ------ |
-|     Exercise| NULL|
-|     Exercise|300.4|
-|     Exercise|300.4|
-|Exercise Band| NULL|
-|   Gymnastics| NULL|
-|   Gymnastics|200.0|
-|   Gymnastics|200.0|
-|  Team Sports| NULL|
-|  Team Sports|300.0|
+|     category|amount| lead|
+| ------ | ------ | ------ |
+|     Exercise| 300.4| NULL|
+|     Exercise| 300.4|300.4|
+|     Exercise| 100.0|300.4|
+|Exercise Band| 200.0| NULL|
+|   Gymnastics| 200.0| NULL|
+|   Gymnastics| 200.0|200.0|
+|   Gymnastics| 100.0|200.0|
+|  Team Sports| 300.0| NULL|
+|  Team Sports| 300.0|300.0|
 
 ### 2.40. Having Clause
 
