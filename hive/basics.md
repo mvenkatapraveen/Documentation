@@ -4,14 +4,15 @@ HIVE has its own personal space(kind of home directory)
 
 - /user/hive/warehouse
 
-**Every table in HIVE is mapped to a directory in HDFS.**
+- Every table in HIVE is mapped to a directory in HDFS.
 
-> Note: By default if location is not provided, then during table creation, it will create sub directories in /user/hive/warehouse folder. Else it will create in specified location.
+> Note: By default if location is not provided, then during table creation, it will create sub directories in /user/hive/warehouse folder else it will create in specified location.
+
+
+**_Default table creation syntax, creates a managed table._**
 
 ![Hive Directory](./assets/images/HiveDirectory.png)
 <br>
-
-- Default table creation syntax, creates a managed table.
 
 ```sh
 create table test(id int, name string)
@@ -21,11 +22,13 @@ create table test(id int, name string)
 
 - So it’s always better to use a delimiter while creating table.
 
+**_Default table creation with delimiter syntax_**
+
 ```sh
 create table test(id int, name string) row format delimited fields terminated by ‘,’ ;
 ```
 
-- We can create a table mapped to a directory at specific location:
+**_Default table creation at specific location with delimiter syntax_**
 
 ![Hive Directory mapping with a table](./assets/images/HiveDirectoryMapping.png)
 <br>
@@ -36,15 +39,15 @@ create table test(id int, name string) row format delimited fields terminated by
 
 ### 1. Types of tables
 
-- 2 Types
+- We can create 2 Types of tables
 
 #### 1.1. Managed Table
 
 By default managed table is created
 
-**Generally used for intermittent or temporary tables**
+> Generally used for intermittent or temporary tables
 
-If we drop the managed table, the data in the backend HDFS directory is also deleted.
+> If we drop the managed table, the data in the backend HDFS directory is also deleted.
 
 Ex:
 In hive terminal
@@ -55,9 +58,9 @@ create table test(id int, name string) row format delimited fields terminated by
 
 #### 1.2 External Table
 
-** Generally used for tables where data is to be preserved**
+> Generally used for tables where data is to be preserved
 
-If we drop the external table, the data in the backend HDFS directory will not be impacted.
+> If we drop the external table, the data in the backend HDFS directory will not be impacted.
 
 Ex:
 In hive terminal
