@@ -1,5 +1,5 @@
 # Sqoop Commands
-pb2pb
+
 Advantages of Sqoop
 - Direct Imports are possible
 - Portion Imports are possible
